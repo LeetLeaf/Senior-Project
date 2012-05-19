@@ -1,6 +1,6 @@
 using System;
 
-namespace Project
+namespace com.Kyle.Keebler
 {
 #if WINDOWS || XBOX
     static class Program

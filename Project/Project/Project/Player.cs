@@ -3,55 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics
 
-
-namespace Project
+namespace com.Kyle.Keebler
 {
     class Player
     {
-        Texture2D textureImage;
-        protected Point frameSize;
-        Point currentFrame;
-        Point sheetSize;
-        int collisionOffset;
-        int timeSinceLastFrame=0;
-        int millisecondsPerFrame;
-        const int defaultMillisecondsPerFrame = 16;
-        protected Vector2 speed;
-        protected Vector2 postion;
+        Point playerFrameSize = new Point(18, 32);
 
-        public Player(Texture2D textureImage, Point frameSize, Point currentFrame, Point sheetSize,
-                      int collisionOffset, int millisecondsPerFrame, Vector2 speed, Vector2 postion)
+        public Point PlayerFrameSize
         {
-            this.textureImage = textureImage;
-            this.frameSize = frameSize;
-            this.currentFrame = currentFrame;
-            this.sheetSize = sheetSize;
-            this.collisionOffset = collisionOffset;
-            this.millisecondsPerFrame = millisecondsPerFrame;
-            this.speed = speed;
-            this.postion = postion;
+            get { return playerFrameSize; }
+            set { playerFrameSize = value; }
         }
 
-        public virtual void Update(GameTime gameTime, Rectangle clientBounds)
+        Point playerCurrentFrame = new Point(0, 0);
+
+        public Point PlayerCurrentFrame
         {
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
-            {
-                timeSinceLastFrame = 0;
-                ++currentFrame.X;
-                if (currentFrame.X >= sheetSize.X)
-                {
-                    currentFrame.X = 0;
-                    ++currentFrame.Y;
-                    if (currentFrame.Y >= sheetSize.Y)
-                    {
-                        currentFrame.Y = 0;
-                    }
-                }
-            }
+          get { return playerCurrentFrame; }
+          set { playerCurrentFrame = value; }
+        }
+        Point playerIdleFrames = new Point(3, 0);
+
+        public Point PlayerIdleFrames
+        {
+          get { return playerIdleFrames; }
+          set { playerIdleFrames = value; }
         }
     }
 }
