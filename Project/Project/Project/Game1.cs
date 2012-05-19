@@ -83,6 +83,15 @@ namespace com.Kyle.Keebler
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
             
             // TODO: Add your update logic here
+            if(keyState.IsKeyDown(Keys.Down))
+            {
+                userPlayer.PlayerFrameSizeY -= 20;
+            }
+
+            else if (keyState.IsKeyDown(Keys.Up))
+            {
+                userPlayer.PlayerFrameSizeY += 20;
+            }
 
             //Mario Commands
             //
