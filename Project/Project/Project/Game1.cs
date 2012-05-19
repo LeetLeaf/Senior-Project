@@ -91,13 +91,13 @@ namespace com.Kyle.Keebler
             if (timeSinceLastFrame > millisecondsPerFrame)
             {
                 timeSinceLastFrame -= millisecondsPerFrame;
-                ++userPlayer.PlayerCurrentFrame.X;
-                if (playerCurrentFrame.X >= playerIdleFrames.X)
+                ++userPlayer.PlayerCurrentFrameX;
+                if (userPlayer.PlayerCurrentFrameX >= userPlayer.PlayerCurrentFrameX)
                 {
-                    playerCurrentFrame.X = 0;
-                    ++playerCurrentFrame.Y;
-                    if (playerCurrentFrame.Y >= playerIdleFrames.Y)
-                        playerCurrentFrame.Y = 0;
+                    userPlayer.PlayerCurrentFrameX = 0;
+                    ++userPlayer.PlayerCurrentFrameY;
+                    if (userPlayer.PlayerCurrentFrameY >= userPlayer.PlayerCurrentFrameY)
+                        userPlayer.PlayerCurrentFrameY = 0;
                 }
             }
 
@@ -114,8 +114,8 @@ namespace com.Kyle.Keebler
 
             spriteBatch.Begin();
             spriteBatch.Draw(player, Vector2.Zero,
-                new Rectangle(playerCurrentFrame.X * playerFrameSize.X,
-                    playerCurrentFrame.Y * playerFrameSize.Y,playerFrameSize.X,playerFrameSize.Y) 
+                new Rectangle(userPlayer.PlayerCurrentFrameX * userPlayer.PlayerFrameSizeX,
+                    userPlayer.PlayerCurrentFrameY * userPlayer.PlayerFrameSizeY, userPlayer.PlayerFrameSizeX, userPlayer.PlayerFrameSizeY) 
                 ,Color.White,0,Vector2.Zero,
                 1, SpriteEffects.None, 0);
             spriteBatch.End();

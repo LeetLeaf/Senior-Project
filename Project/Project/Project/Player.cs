@@ -3,33 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics
+using Microsoft.Xna.Framework.Graphics;
 
 namespace com.Kyle.Keebler
 {
-    class Player
+    public class Player
     {
-        Point playerFrameSize = new Point(18, 32);
+        private Point playerFrameSize = new Point(18, 32);
 
-        public Point PlayerFrameSize
+        public int PlayerFrameSizeX
         {
-            get { return playerFrameSize; }
-            set { playerFrameSize = value; }
+            get { return playerFrameSize.X; }
+            set { playerFrameSize.X = value; }
         }
-
-        Point playerCurrentFrame = new Point(0, 0);
-
-        public Point PlayerCurrentFrame
+        public int PlayerFrameSizeY
         {
-          get { return playerCurrentFrame; }
-          set { playerCurrentFrame = value; }
+            get { return playerFrameSize.Y; }
+            set { playerFrameSize.Y = value; }
         }
-        Point playerIdleFrames = new Point(3, 0);
+        private Point playerCurrentFrame = new Point(0, 0);
 
-        public Point PlayerIdleFrames
+        public int PlayerCurrentFrameX
         {
-          get { return playerIdleFrames; }
-          set { playerIdleFrames = value; }
+          get { return playerCurrentFrame.X; }
+          set { playerCurrentFrame.X = value; }
+        }
+        public int PlayerCurrentFrameY
+        {
+            get { return playerCurrentFrame.Y; }
+            set { playerCurrentFrame.Y = value; }
+        }
+        private Point playerIdleFrames = new Point(3, 0);
+
+        public int PlayerIdleFramesX
+        {
+          get { return playerIdleFrames.X; }
+          set { playerIdleFrames.X = value; }
+        }
+        public int PlayerIdleFramesY
+        {
+            get { return playerIdleFrames.Y; }
+            set { playerIdleFrames.Y = value; }
         }
     }
 }
