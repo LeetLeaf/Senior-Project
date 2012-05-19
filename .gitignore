@@ -1,1 +1,13 @@
-
+*.exe
+*.pdb
+*.dll
+*.user
+*.suo
+*.cache
+*.cachefile
+*.FileListAbsolute.txt
+Thumbs.db
+[Bb]in/
+obj/
+[Dd]ebug*/
+[Rr]elease*/
