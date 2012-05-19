@@ -4,54 +4,46 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-
-namespace Project
+namespace com.Kyle.Keebler
 {
-    class Player
+    public class Player
     {
-        Texture2D textureImage;
-        protected Point frameSize;
-        Point currentFrame;
-        Point sheetSize;
-        int collisionOffset;
-        int timeSinceLastFrame=0;
-        int millisecondsPerFrame;
-        const int defaultMillisecondsPerFrame = 16;
-        protected Vector2 speed;
-        protected Vector2 postion;
+        private Point playerFrameSize = new Point(18, 32);
 
-        public Player(Texture2D textureImage, Point frameSize, Point currentFrame, Point sheetSize,
-                      int collisionOffset, int millisecondsPerFrame, Vector2 speed, Vector2 postion)
+        public int PlayerFrameSizeX
         {
-            this.textureImage = textureImage;
-            this.frameSize = frameSize;
-            this.currentFrame = currentFrame;
-            this.sheetSize = sheetSize;
-            this.collisionOffset = collisionOffset;
-            this.millisecondsPerFrame = millisecondsPerFrame;
-            this.speed = speed;
-            this.postion = postion;
+            get { return playerFrameSize.X; }
+            set { playerFrameSize.X = value; }
         }
-
-        public virtual void Update(GameTime gameTime, Rectangle clientBounds)
+        public int PlayerFrameSizeY
         {
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
-            {
-                timeSinceLastFrame = 0;
-                ++currentFrame.X;
-                if (currentFrame.X >= sheetSize.X)
-                {
-                    currentFrame.X = 0;
-                    ++currentFrame.Y;
-                    if (currentFrame.Y >= sheetSize.Y)
-                    {
-                        currentFrame.Y = 0;
-                    }
-                }
-            }
+            get { return playerFrameSize.Y; }
+            set { playerFrameSize.Y = value; }
+        }
+        private Point playerCurrentFrame = new Point(0, 0);
+
+        public int PlayerCurrentFrameX
+        {
+          get { return playerCurrentFrame.X; }
+          set { playerCurrentFrame.X = value; }
+        }
+        public int PlayerCurrentFrameY
+        {
+            get { return playerCurrentFrame.Y; }
+            set { playerCurrentFrame.Y = value; }
+        }
+        private Point playerIdleFrames = new Point(3, 0);
+
+        public int PlayerIdleFramesX
+        {
+          get { return playerIdleFrames.X; }
+          set { playerIdleFrames.X = value; }
+        }
+        public int PlayerIdleFramesY
+        {
+            get { return playerIdleFrames.Y; }
+            set { playerIdleFrames.Y = value; }
         }
     }
 }
