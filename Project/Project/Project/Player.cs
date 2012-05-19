@@ -45,5 +45,20 @@ namespace com.Kyle.Keebler
             get { return playerIdleFrames.Y; }
             set { playerIdleFrames.Y = value; }
         }
+
+        private Point playerPos = new Point(0, 0);
+
+        public int PlayerPosX
+        {
+            get { return playerPos.X; }
+            set { playerPos.X = value; }
+        }
+
+        public int PlayerPosY
+        {
+            get { return playerPos.Y; }
+            set { playerPos.Y = value; }
+        }
+
     }
 }

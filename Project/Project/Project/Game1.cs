@@ -85,14 +85,20 @@ namespace com.Kyle.Keebler
             // TODO: Add your update logic here
             if(keyState.IsKeyDown(Keys.Down))
             {
-                userPlayer.PlayerFrameSizeY -= 20;
+                userPlayer.PlayerPosY += 10;
             }
-
             else if (keyState.IsKeyDown(Keys.Up))
             {
-                userPlayer.PlayerFrameSizeY += 20;
+                userPlayer.PlayerPosY -= 10;
             }
-
+            if (keyState.IsKeyDown(Keys.Left))
+            {
+                userPlayer.PlayerPosX -= 10;
+            }
+            else if (keyState.IsKeyDown(Keys.Right))
+            {
+                userPlayer.PlayerPosX += 10;
+            }
             //Mario Commands
             //
             //Mario Idle
@@ -101,11 +107,11 @@ namespace com.Kyle.Keebler
             {
                 timeSinceLastFrame -= millisecondsPerFrame;
                 ++userPlayer.PlayerCurrentFrameX;
-                if (userPlayer.PlayerCurrentFrameX >= userPlayer.PlayerCurrentFrameX)
+                if (userPlayer.PlayerCurrentFrameX >= userPlayer.PlayerIdleFramesX)
                 {
                     userPlayer.PlayerCurrentFrameX = 0;
                     ++userPlayer.PlayerCurrentFrameY;
-                    if (userPlayer.PlayerCurrentFrameY >= userPlayer.PlayerCurrentFrameY)
+                    if (userPlayer.PlayerCurrentFrameY >= userPlayer.PlayerIdleFramesY)
                         userPlayer.PlayerCurrentFrameY = 0;
                 }
             }
@@ -122,7 +128,7 @@ namespace com.Kyle.Keebler
             GraphicsDevice.Clear(new Color(255,255,1));
 
             spriteBatch.Begin();
-            spriteBatch.Draw(player, Vector2.Zero,
+            spriteBatch.Draw(player, new Vector2(userPlayer.PlayerPosX,userPlayer.PlayerPosY),
                 new Rectangle(userPlayer.PlayerCurrentFrameX * userPlayer.PlayerFrameSizeX,
                     userPlayer.PlayerCurrentFrameY * userPlayer.PlayerFrameSizeY, userPlayer.PlayerFrameSizeX, userPlayer.PlayerFrameSizeY) 
                 ,Color.White,0,Vector2.Zero,
