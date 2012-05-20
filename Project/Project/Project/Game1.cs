@@ -19,13 +19,6 @@ namespace com.Kyle.Keebler
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D player;
-        /* 
-        Point playerFrameSize = new Point(18,32);
-        Point playerCurrentFrame = new Point(0, 0);
-        Point playerIdleFrames = new Point(3,0);
-        */
-        int timeSinceLastFrame = 0;
-        int millisecondsPerFrame = 120;
         Player userPlayer = new Player();
 
         public Game1()
@@ -85,37 +78,27 @@ namespace com.Kyle.Keebler
             // TODO: Add your update logic here
             if(keyState.IsKeyDown(Keys.Down))
             {
-                userPlayer.PlayerPosY += 10;
+                userPlayer.PosY += 10;
             }
             else if (keyState.IsKeyDown(Keys.Up))
             {
-                userPlayer.PlayerPosY -= 10;
+                userPlayer.PosY -= 10;
             }
             if (keyState.IsKeyDown(Keys.Left))
             {
-                userPlayer.PlayerPosX -= 10;
+                userPlayer.PosX -= 10;
             }
             else if (keyState.IsKeyDown(Keys.Right))
             {
-                userPlayer.PlayerPosX += 10;
+                userPlayer.PosX += 10;
             }
             //Mario Commands
             //
             //Mario Idle
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
+            if (keyState.IsKeyUp(Keys.Down) && keyState.IsKeyUp(Keys.Up) && keyState.IsKeyUp(Keys.Right) && keyState.IsKeyUp(Keys.Left))
             {
-                timeSinceLastFrame -= millisecondsPerFrame;
-                ++userPlayer.PlayerCurrentFrameX;
-                if (userPlayer.PlayerCurrentFrameX >= userPlayer.PlayerIdleFramesX)
-                {
-                    userPlayer.PlayerCurrentFrameX = 0;
-                    ++userPlayer.PlayerCurrentFrameY;
-                    if (userPlayer.PlayerCurrentFrameY >= userPlayer.PlayerIdleFramesY)
-                        userPlayer.PlayerCurrentFrameY = 0;
-                }
+                userPlayer.idleCycle(gameTime);
             }
-
             base.Update(gameTime);
         }
 
@@ -128,9 +111,8 @@ namespace com.Kyle.Keebler
             GraphicsDevice.Clear(new Color(255,255,1));
 
             spriteBatch.Begin();
-            spriteBatch.Draw(player, new Vector2(userPlayer.PlayerPosX,userPlayer.PlayerPosY),
-                new Rectangle(userPlayer.PlayerCurrentFrameX * userPlayer.PlayerFrameSizeX,
-                    userPlayer.PlayerCurrentFrameY * userPlayer.PlayerFrameSizeY, userPlayer.PlayerFrameSizeX, userPlayer.PlayerFrameSizeY) 
+            spriteBatch.Draw(player, new Vector2(userPlayer.PosX,userPlayer.PosY),
+                userPlayer.renderFrame()
                 ,Color.White,0,Vector2.Zero,
                 1, SpriteEffects.None, 0);
             spriteBatch.End();
