@@ -9,56 +9,75 @@ namespace com.Kyle.Keebler
 {
     public class Player
     {
-        private Point playerFrameSize = new Point(18, 32);
+        //Properties
+        private Point frameSize = new Point(18, 32);
 
-        public int PlayerFrameSizeX
+        public int FrameSizeX
         {
-            get { return playerFrameSize.X; }
-            set { playerFrameSize.X = value; }
+            get { return frameSize.X; }
+            set { frameSize.X = value; }
         }
-        public int PlayerFrameSizeY
+        public int FrameSizeY
         {
-            get { return playerFrameSize.Y; }
-            set { playerFrameSize.Y = value; }
+            get { return frameSize.Y; }
+            set { frameSize.Y = value; }
         }
-        private Point playerCurrentFrame = new Point(0, 0);
+        private Point currentFrame = new Point(0, 0);
 
-        public int PlayerCurrentFrameX
+        public int CurrentFrameX
         {
-          get { return playerCurrentFrame.X; }
-          set { playerCurrentFrame.X = value; }
+          get { return currentFrame.X; }
+          set { currentFrame.X = value; }
         }
-        public int PlayerCurrentFrameY
+        public int CurrentFrameY
         {
-            get { return playerCurrentFrame.Y; }
-            set { playerCurrentFrame.Y = value; }
-        }
-        private Point playerIdleFrames = new Point(3, 0);
-
-        public int PlayerIdleFramesX
-        {
-          get { return playerIdleFrames.X; }
-          set { playerIdleFrames.X = value; }
-        }
-        public int PlayerIdleFramesY
-        {
-            get { return playerIdleFrames.Y; }
-            set { playerIdleFrames.Y = value; }
+            get { return currentFrame.Y; }
+            set { currentFrame.Y = value; }
         }
 
-        private Point playerPos = new Point(0, 0);
+        private Point pos = new Point(0, 0);
 
-        public int PlayerPosX
+        public int PosX
         {
-            get { return playerPos.X; }
-            set { playerPos.X = value; }
+            get { return pos.X; }
+            set { pos.X = value; }
         }
 
-        public int PlayerPosY
+        public int PosY
         {
-            get { return playerPos.Y; }
-            set { playerPos.Y = value; }
+            get { return pos.Y; }
+            set { pos.Y = value; }
         }
 
+        
+        //Animation and Rendering Methods
+        private int timeSinceLastFrame = 0;
+        private int millisecondsPerFrame = 120;
+
+
+        public Rectangle renderFrame()
+        {
+            return new Rectangle(CurrentFrameX * FrameSizeX,
+                    CurrentFrameY * FrameSizeY, FrameSizeX, FrameSizeY);
+        }
+
+        private Point idleFrames = new Point(3,0);
+
+        public void idleCycle(GameTime gameTime)
+        {
+            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastFrame > millisecondsPerFrame)
+            {
+                timeSinceLastFrame -= millisecondsPerFrame;
+                ++CurrentFrameX;
+                if (CurrentFrameX >= idleFrames.X)
+                {
+                    CurrentFrameX = 0;
+                    ++CurrentFrameY;
+                    if (CurrentFrameY >= idleFrames.Y)
+                        CurrentFrameY = 0;
+                }
+            }
+        }
     }
 }
