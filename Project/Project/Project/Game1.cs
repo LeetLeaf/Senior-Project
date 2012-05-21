@@ -48,7 +48,7 @@ namespace com.Kyle.Keebler
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            player = Content.Load<Texture2D>(@"images/Mario");
+            player = Content.Load<Texture2D>(@"images/Hero");
 
             // TODO: use this.Content to load your game content here
         }
@@ -78,26 +78,29 @@ namespace com.Kyle.Keebler
             // TODO: Add your update logic here
             if(keyState.IsKeyDown(Keys.Down))
             {
-                userPlayer.PosY += 10;
+                userPlayer.PosY += 2;
+                userPlayer.walkCycleSouth(gameTime);
             }
             else if (keyState.IsKeyDown(Keys.Up))
             {
-                userPlayer.PosY -= 10;
+                userPlayer.PosY -= 2;
             }
             if (keyState.IsKeyDown(Keys.Left))
             {
-                userPlayer.PosX -= 10;
+                userPlayer.PosX -= 2;
+                userPlayer.walkCycleWest(gameTime);
             }
             else if (keyState.IsKeyDown(Keys.Right))
             {
-                userPlayer.PosX += 10;
+                userPlayer.PosX += 2;
+                userPlayer.walkCycleEast(gameTime);
             }
             //Mario Commands
             //
             //Mario Idle
             if (keyState.IsKeyUp(Keys.Down) && keyState.IsKeyUp(Keys.Up) && keyState.IsKeyUp(Keys.Right) && keyState.IsKeyUp(Keys.Left))
             {
-                userPlayer.idleCycle(gameTime);
+                userPlayer.idleCycleSouth(gameTime);
             }
             base.Update(gameTime);
         }
@@ -108,7 +111,7 @@ namespace com.Kyle.Keebler
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(255,255,1));
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
             spriteBatch.Draw(player, new Vector2(userPlayer.PosX,userPlayer.PosY),
