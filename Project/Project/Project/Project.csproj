@@ -107,8 +107,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
+    <Compile Include="DefensiveAttributes.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Entrance.cs" />
     <Compile Include="MapBase.cs" />
+    <Compile Include="OffensiveAttributes.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
