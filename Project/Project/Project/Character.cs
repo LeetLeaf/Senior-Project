@@ -9,23 +9,28 @@ namespace com.Kyle.Keebler
 {
     public abstract class Character
     {
-        public string Name { get; set; }
-        public Texture2D Texture { get; set; }
-        protected Vector2 Position;
-        public Point FrameSize { get; set; }
-        public int CurrentFrameX { get; set; }
-        public int CurrentFrameY { get; set; }
+        public string Name { get; set; }  //Name of the Character
+        public Texture2D Texture { get; set; } //Sprite Sheet assigned to the Character
+        protected Vector2 Position; //Position of the Character on the screen
+        public Point FrameSize { get; set; } //The size of one frame on the Sprite Sheet
+        public int CurrentFrameX { get; set; } //Which sprite is selected on the Sheet, horizontally 
+        public int CurrentFrameY { get; set; } //Which sprite is selected on the Sheet, vertically
 
-        public int MaxHealth { get; set; }
-        public int CurrentHealth { get; set; }
+        public int MaxHealth { get; set; } //Max health a character has
+        public int CurrentHealth { get; set; } //Current amount of health a character has
 
-        public int ExperiencePointValue { get; set; }
+        public int ExperiencePointValue { get; set; } //How much experience points the character gives???
 
-        public abstract void ChangeGraphic();
-        public abstract bool ResolveAttack();
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract void ChangeGraphic(); //allows a change to the texture
+        public abstract bool ResolveAttack(); //Handles what happens when attacked?
+        public abstract void Draw(SpriteBatch spriteBatch); //Used to Draw the Character in the Game Class
 
-
+        /// <summary>
+        /// Updates the Player position on the screen when a certain direction is called.
+        /// Draws the frames that correspond with direction the character is moving.
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="gameTime"></param>
         public void MovePosition(Direction direction, GameTime gameTime)
         {
             //let put basic movements here
@@ -52,13 +57,21 @@ namespace com.Kyle.Keebler
             } 
 
         }
-
+        /// <summary>
+        /// This Initialize of character assigns the Character to a Sprite sheet
+        /// and the position of the character on the screen.
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="position"></param>
         public virtual void Initialize(Texture2D texture, Vector2 position)
         {
             Texture = texture;
             Position = position;
         }
-
+        /// <summary>
+        /// Creates a Rectangle that has the exact position of the CurrentFrame.
+        /// </summary>
+        /// <returns></returns>
         public Rectangle renderFrame()
         {
             return new Rectangle(Convert.ToInt32(CurrentFrameX) * Convert.ToInt32(FrameSize.X),
