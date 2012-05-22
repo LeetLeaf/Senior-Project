@@ -18,8 +18,8 @@ namespace com.Kyle.Keebler
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D player;
-        Player userPlayer = new Player();
+        Texture2D playerTexture;
+        Player userPlayer = null;
 
         public Game1()
         {
@@ -36,8 +36,9 @@ namespace com.Kyle.Keebler
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -48,8 +49,8 @@ namespace com.Kyle.Keebler
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            player = Content.Load<Texture2D>(@"images/Hero");
-
+            playerTexture = Content.Load<Texture2D>(@"images/Hero");
+            userPlayer = new Player(playerTexture,new Vector2(0,0));
             // TODO: use this.Content to load your game content here
         }
 
@@ -78,22 +79,19 @@ namespace com.Kyle.Keebler
             // TODO: Add your update logic here
             if(keyState.IsKeyDown(Keys.Down))
             {
-                userPlayer.PosY += 2;
-                userPlayer.walkCycleSouth(gameTime);
+                userPlayer.MovePosition(Direction.South, gameTime);
             }
             else if (keyState.IsKeyDown(Keys.Up))
             {
-                userPlayer.PosY -= 2;
+                userPlayer.MovePosition(Direction.North, gameTime);
             }
             if (keyState.IsKeyDown(Keys.Left))
             {
-                userPlayer.PosX -= 2;
-                userPlayer.walkCycleWest(gameTime);
+                userPlayer.MovePosition(Direction.West, gameTime);
             }
             else if (keyState.IsKeyDown(Keys.Right))
             {
-                userPlayer.PosX += 2;
-                userPlayer.walkCycleEast(gameTime);
+                userPlayer.MovePosition(Direction.East, gameTime);
             }
             //Mario Commands
             //
@@ -114,10 +112,7 @@ namespace com.Kyle.Keebler
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(player, new Vector2(userPlayer.PosX,userPlayer.PosY),
-                userPlayer.renderFrame()
-                ,Color.White,0,Vector2.Zero,
-                1, SpriteEffects.None, 0);
+            userPlayer.Draw(spriteBatch);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
