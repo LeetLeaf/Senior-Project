@@ -15,15 +15,20 @@ namespace com.Kyle.Keebler
         public Point FrameSize { get; set; } //The size of one frame on the Sprite Sheet
         public int CurrentFrameX { get; set; } //Which sprite is selected on the Sheet, horizontally 
         public int CurrentFrameY { get; set; } //Which sprite is selected on the Sheet, vertically
+        public Rectangle CollisionRec { get; set; }
 
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
 
+
         public abstract void ChangeGraphic(); //allows a change to the texture
         public abstract bool ResolveAttack(); //Handles what happens when attacked?
+        public abstract void Update(GameTime gameTime); //Used to Update the Character in the Game Class
         public abstract void Draw(SpriteBatch spriteBatch); //Used to Draw the Character in the Game Class
+        
+
 
         /// <summary>
         /// Updates the Player position on the screen when a certain direction is called.
@@ -68,6 +73,13 @@ namespace com.Kyle.Keebler
             Texture = texture;
             Position = position;
         }
+
+        public bool Collide(Rectangle collideRec)
+        {
+
+            return CollisionRec.Intersects(collideRec);
+        }
+
         /// <summary>
         /// Creates a Rectangle that has the exact position of the CurrentFrame.
         /// </summary>
@@ -165,7 +177,5 @@ namespace com.Kyle.Keebler
                 }
             }
         }
-
-
     }
 }
