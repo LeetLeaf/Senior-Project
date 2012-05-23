@@ -12,5 +12,6 @@ namespace com.Kyle.Keebler
         void Initialize();
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);
+        Rectangle CollisionRec { get; set; }
     }
 }
