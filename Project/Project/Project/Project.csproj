@@ -111,7 +111,9 @@
     <Compile Include="DefensiveAttributes.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Entrance.cs" />
+    <Compile Include="IMoveable.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="IRenderable.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="MapBase.cs" />

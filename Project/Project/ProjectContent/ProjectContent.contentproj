@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="images\Inventory.png">
       <Name>Inventory</Name>
+    <Compile Include="images\Tiles.png">
+      <Name>Tiles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
