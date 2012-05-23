@@ -11,12 +11,15 @@ namespace com.Kyle.Keebler
     public class Player : Character
     {
         //Properties
+        public bool showItems {get; set;}
+        
 
-        public Player(Texture2D texture, Vector2 Position)
+        public Player(Texture2D Texture, Vector2 Position)
         {
-            Texture = texture;
+            this.Texture = Texture;
             this.Position = Position;
             FrameSize = new Point(18, 24);
+            showItems = false;
             
         }
 
@@ -30,7 +33,11 @@ namespace com.Kyle.Keebler
         }
         public override void Update(GameTime gameTime)
         {
-          
+
+            if (Keyboard.GetState().IsKeyDown(Keys.T))
+            {
+                showItems = !showItems;
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 MovePosition(Direction.South, gameTime);
