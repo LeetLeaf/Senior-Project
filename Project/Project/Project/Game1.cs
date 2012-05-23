@@ -82,7 +82,7 @@ namespace com.Kyle.Keebler
             userPlayer.Update(gameTime);
             //Collision Test
             if(userPlayer.Collide(testCharacter.CollisionRec))
-                Exit();
+                this.Exit();
 
             base.Update(gameTime);
         }
