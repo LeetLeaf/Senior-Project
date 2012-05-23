@@ -21,6 +21,8 @@ namespace com.Kyle.Keebler
         Texture2D playerTexture;
         Player userPlayer = null;
         Player testCharacter = null;
+        Sword basicSword = null;
+        Inventory playerItems = null;
 
         public Game1()
         {
@@ -53,6 +55,8 @@ namespace com.Kyle.Keebler
             playerTexture = Content.Load<Texture2D>(@"images/Hero");
             userPlayer = new Player(playerTexture,new Vector2(0,0));
             testCharacter = new Player(playerTexture, new Vector2(100, 100));
+            basicSword = new Sword("Basic Sword",Content.Load<Texture2D>(@"images/Sword"),new Vector2(200,50),ItemType.Weapon);
+            playerItems = new Inventory(Content.Load<Texture2D>(@"images/Inventory"));
             // TODO: use this.Content to load your game content here
         }
 
@@ -83,7 +87,13 @@ namespace com.Kyle.Keebler
             //Collision Test
             if(userPlayer.Collide(testCharacter.CollisionRec))
                 this.Exit();
-
+            if (userPlayer.Collide(basicSword.CollisionRec))
+            {
+                basicSword.isPickedUp = true;
+                playerItems.InventoryList.Add(basicSword);
+                
+            }
+            basicSword.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -98,6 +108,9 @@ namespace com.Kyle.Keebler
             spriteBatch.Begin();
             userPlayer.Draw(spriteBatch);
             testCharacter.Draw(spriteBatch);
+            basicSword.Draw(spriteBatch);
+            if(userPlayer.showItems)
+                playerItems.Draw(spriteBatch,Window.ClientBounds);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
