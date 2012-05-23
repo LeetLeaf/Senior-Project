@@ -20,6 +20,7 @@ namespace com.Kyle.Keebler
         SpriteBatch spriteBatch;
         Texture2D playerTexture;
         Player userPlayer = null;
+        Player testCharacter = null;
 
         public Game1()
         {
@@ -51,6 +52,7 @@ namespace com.Kyle.Keebler
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerTexture = Content.Load<Texture2D>(@"images/Hero");
             userPlayer = new Player(playerTexture,new Vector2(0,0));
+            testCharacter = new Player(playerTexture, new Vector2(100, 100));
             // TODO: use this.Content to load your game content here
         }
 
@@ -77,29 +79,11 @@ namespace com.Kyle.Keebler
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
             
             // TODO: Add your update logic here
-            if(keyState.IsKeyDown(Keys.Down))
-            {
-                userPlayer.MovePosition(Direction.South, gameTime);
-            }
-            else if (keyState.IsKeyDown(Keys.Up))
-            {
-                userPlayer.MovePosition(Direction.North, gameTime);
-            }
-            if (keyState.IsKeyDown(Keys.Left))
-            {
-                userPlayer.MovePosition(Direction.West, gameTime);
-            }
-            else if (keyState.IsKeyDown(Keys.Right))
-            {
-                userPlayer.MovePosition(Direction.East, gameTime);
-            }
-            //Mario Commands
-            //
-            //Mario Idle
-            if (keyState.IsKeyUp(Keys.Down) && keyState.IsKeyUp(Keys.Up) && keyState.IsKeyUp(Keys.Right) && keyState.IsKeyUp(Keys.Left))
-            {
-                userPlayer.idleCycleSouth(gameTime);
-            }
+            userPlayer.Update(gameTime);
+            //Collision Test
+            if(userPlayer.Collide(testCharacter.CollisionRec))
+                Exit();
+
             base.Update(gameTime);
         }
 
@@ -113,6 +97,7 @@ namespace com.Kyle.Keebler
 
             spriteBatch.Begin();
             userPlayer.Draw(spriteBatch);
+            testCharacter.Draw(spriteBatch);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
