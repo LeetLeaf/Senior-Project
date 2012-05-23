@@ -9,6 +9,7 @@ namespace com.Kyle.Keebler
 {
     public class Item
     {
+        public string Name { get; set; }
         public ItemType TypeOfItem { get; set; }
         public int ExperiencePointValue { get; private set; }
         public Vector2 Position { get; set; }
