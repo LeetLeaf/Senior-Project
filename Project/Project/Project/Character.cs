@@ -15,7 +15,6 @@ namespace com.Kyle.Keebler
         public Point FrameSize { get; set; } //The size of one frame on the Sprite Sheet
         public int CurrentFrameX { get; set; } //Which sprite is selected on the Sheet, horizontally 
         public int CurrentFrameY { get; set; } //Which sprite is selected on the Sheet, vertically
-        public Rectangle CollisionRec { get; set; }
 
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
@@ -176,6 +175,18 @@ namespace com.Kyle.Keebler
                         CurrentFrameY = walkFramesEast[0].Y;
                 }
             }
+        }
+        public Rectangle CollisionRec
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)Position.X + 5,
+                    (int)Position.Y + 5,
+                    FrameSize.X - 5,
+                    FrameSize.Y - 5);
+            }
+
         }
     }
 }
