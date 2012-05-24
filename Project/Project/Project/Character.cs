@@ -13,6 +13,9 @@ namespace com.Kyle.Keebler
 
         #region Fields
 
+        //Time to before a change is avaible 
+        protected int TimeToWait = 0;
+
         //Position of the Character on the screen
         protected Vector2 Position = new Vector2(0,0); 
 
@@ -39,6 +42,7 @@ namespace com.Kyle.Keebler
 
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
+        public bool CanMove { get; set; } //Allows a character to move or not to move 
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
 
@@ -169,6 +173,18 @@ namespace com.Kyle.Keebler
                 Position.Y -= 15;
             if (direction == Direction.North)
                 Position.Y += 15;
+        }
+
+        public void Timer(GameTime gameTime, bool change)
+        {
+            if (TimeToWait > 0)
+            {
+                TimeToWait -= gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeToWait <= 0)
+                {
+                    change = true;
+                }
+            }
         }
 
         #region IRenderable Members

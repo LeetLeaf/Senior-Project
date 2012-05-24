@@ -24,6 +24,7 @@ namespace com.Kyle.Keebler
             FrameSize = new Point(18, 24);
             MaxHealth = 5;
             CurrentHealth = MaxHealth;
+            CanMove = true;
             showItems = false;
 
             movementRate = 2;
@@ -63,28 +64,33 @@ namespace com.Kyle.Keebler
 
         public override void Update(GameTime gameTime)
         {
-
-            if (Keyboard.GetState().IsKeyDown(Keys.T))
+            if (CanMove)
             {
-                showItems = !showItems;
+                if (Keyboard.GetState().IsKeyDown(Keys.T))
+                {
+                    showItems = !showItems;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                {
+                    MovePosition(Direction.West, gameTime);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                {
+                    MovePosition(Direction.East, gameTime);
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                {
+                    MovePosition(Direction.South, gameTime);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                {
+                    MovePosition(Direction.North, gameTime);
+                }
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            else
             {
-                MovePosition(Direction.West, gameTime);
+                Timer(gameTime, CanMove);
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                MovePosition(Direction.East, gameTime);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                MovePosition(Direction.South, gameTime);
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                MovePosition(Direction.North, gameTime);
-            }
-
             //Idle
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
                 && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
@@ -124,6 +130,8 @@ namespace com.Kyle.Keebler
             { 
                 KnockBack(characterDirection);
                 CurrentHealth -= 1;
+                CanMove = false;
+                TimeToWait = 120;
             }
             //if (collisionElement)
             //{
