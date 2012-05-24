@@ -6,9 +6,10 @@ using Microsoft.Xna.Framework;
 
 namespace com.Kyle.Keebler
 {
-    interface IMoveable
+    public interface IMoveable : ICollidable
     {
         void MovePosition(Direction direction, GameTime gameTime);
-
+        void Update(GameTime gameTime);
+        bool Collide(Rectangle collideRec);
     }
 }

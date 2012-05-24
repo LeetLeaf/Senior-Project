@@ -19,15 +19,21 @@ namespace com.Kyle.Keebler
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D playerTexture;
+
         Player userPlayer = null;
         Player testCharacter = null;
         Sword basicSword = null;
         Inventory playerItems = null;
 
+        List<IMoveable> movingElements;
+        List<IRenderable> renderedObjects;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            movingElements = new List<IMoveable>();
+            renderedObjects = new List<IRenderable>();
         }
 
         /// <summary>
@@ -57,7 +63,11 @@ namespace com.Kyle.Keebler
             testCharacter = new Player(playerTexture, new Vector2(100, 100));
             basicSword = new Sword("Basic Sword",Content.Load<Texture2D>(@"images/Sword"),new Vector2(200,50),ItemType.Weapon);
             playerItems = new Inventory(Content.Load<Texture2D>(@"images/Inventory"));
-            // TODO: use this.Content to load your game content here
+
+            movingElements.Add(userPlayer);
+            movingElements.Add(testCharacter);
+
+            renderedObjects.Add(basicSword);
         }
 
         /// <summary>
@@ -81,9 +91,20 @@ namespace com.Kyle.Keebler
                 this.Exit();
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
-            
+
+            foreach (IMoveable moveElement in movingElements)
+            {
+                moveElement.Update(gameTime);
+                foreach(IMoveable otherElement in movingElements.Where(
+                    m => !m.Equals(moveElement) && 
+                    m.CanCollide))
+                    {
+                        moveElement.Collide(otherElement.CollisionRec);
+                    }
+            }
             // TODO: Add your update logic here
-            userPlayer.Update(gameTime);
+            //userPlayer.Update(gameTime);
+
             //Collision Test
             if(userPlayer.Collide(testCharacter.CollisionRec))
                 this.Exit();

@@ -36,20 +36,11 @@ namespace com.Kyle.Keebler
         public string Name { get; set; }  //Name of the Character
         public Texture2D Texture { get; set; } //Sprite Sheet assigned to the Character
         public Point FrameSize { get; set; } //The size of one frame on the Sprite Sheet
-        //public int CurrentFrame.X { get; set; } //Which sprite is selected on the Sheet, horizontally 
-        //public int CurrentFrame.Y { get; set; } //Which sprite is selected on the Sheet, vertically
 
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
-
-
-        public abstract void ChangeGraphic(); //allows a change to the texture
-        public abstract bool ResolveAttack(); //Handles what happens when attacked?
-        public abstract void Update(GameTime gameTime); //Used to Update the Character in the Game Class
-        public abstract void Draw(SpriteBatch spriteBatch); //Used to Draw the Character in the Game Class
-
 
         public Rectangle CollisionRec
         {
@@ -62,6 +53,14 @@ namespace com.Kyle.Keebler
                     FrameSize.Y - 5);
             }
         }
+
+        public bool CanCollide { get; set; }
+
+        public abstract void ChangeGraphic(); //allows a change to the texture
+        public abstract bool ResolveAttack(); //Handles what happens when attacked?
+        public abstract void Update(GameTime gameTime); //Used to Update the Character in the Game Class
+        public abstract void Draw(SpriteBatch spriteBatch); //Used to Draw the Character in the Game Class
+
 
         /// <summary>
         /// Updates the Player position on the screen when a certain direction is called.
@@ -106,7 +105,7 @@ namespace com.Kyle.Keebler
 
         }
 
-        public bool Collide(Rectangle collideRec)
+        public virtual bool Collide(Rectangle collideRec)
         {
 
             return CollisionRec.Intersects(collideRec);

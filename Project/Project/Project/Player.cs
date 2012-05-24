@@ -94,5 +94,14 @@ namespace com.Kyle.Keebler
                 renderFrame(), Color.White);
         }
 
+        public override bool Collide(Rectangle collideRec)
+        {
+            bool collision = base.Collide(collideRec);
+            if (collision)
+            {
+            }
+            return collision;
+        }
+
     }
 }

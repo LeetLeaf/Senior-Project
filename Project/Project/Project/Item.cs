@@ -15,6 +15,7 @@ namespace com.Kyle.Keebler
         public int ExperiencePointValue { get; private set; }
         public Vector2 Position { get; set; }
         public Texture2D Texture { get; set; }
+        public bool CanCollide { get; set; }
 
         public Rectangle CollisionRec
         {

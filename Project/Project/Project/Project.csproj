@@ -111,6 +111,7 @@
     <Compile Include="DefensiveAttributes.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Entrance.cs" />
+    <Compile Include="ICollidable.cs" />
     <Compile Include="IMoveable.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="IRenderable.cs" />
