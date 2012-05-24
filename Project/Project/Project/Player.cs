@@ -25,23 +25,23 @@ namespace com.Kyle.Keebler
 
             walkFrames = new Dictionary<Direction,Tuple<Point,Point>>();
             walkFrames.Add(Direction.North, 
-                new Tuple<Point,Point>(new Point(-1,-1),new Point(-1,-1)));
+                new Tuple<Point, Point>(new Point(0, 4),new Point(4, 4)));
             walkFrames.Add(Direction.South, 
-                new Tuple<Point, Point>(new Point(0, 0), new Point(3, 0)));
+                new Tuple<Point, Point>(new Point(0, 1), new Point(4, 1)));
             walkFrames.Add(Direction.West, 
-                new Tuple<Point, Point>(new Point(0, 1), new Point(3, 1)));
+                new Tuple<Point, Point>(new Point(0, 2), new Point(4, 2)));
            walkFrames.Add(Direction.East, 
-                new Tuple<Point, Point>(new Point(0, 2), new Point(3, 2)));
+                new Tuple<Point, Point>(new Point(0, 3), new Point(4, 3)));
 
             idleFrames = new Dictionary<Direction,Tuple<Point,Point>>();
             idleFrames.Add(Direction.North, 
-                new Tuple<Point,Point>(new Point(1, 0), new Point(1, 0)));
+                new Tuple<Point,Point>(new Point(0, 4), new Point(0, 4)));
             idleFrames.Add(Direction.South, 
-                new Tuple<Point, Point>(new Point(1, 0), new Point(1, 0)));
+                new Tuple<Point, Point>(new Point(0, 0), new Point(0, 0)));
             idleFrames.Add(Direction.West, 
-                new Tuple<Point, Point>(new Point(1, 0), new Point(1, 0)));
+                new Tuple<Point, Point>(new Point(0, 2), new Point(0, 2)));
            idleFrames.Add(Direction.East, 
-                new Tuple<Point, Point>(new Point(1, 0), new Point(1, 0)));
+                new Tuple<Point, Point>(new Point(0, 3), new Point(0, 3)));
 
         }
 

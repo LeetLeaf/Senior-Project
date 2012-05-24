@@ -52,7 +52,7 @@ namespace com.Kyle.Keebler
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            playerTexture = Content.Load<Texture2D>(@"images/Hero");
+            playerTexture = Content.Load<Texture2D>(@"images/Hero Sprite Sheet");
             userPlayer = new Player(playerTexture,new Vector2(0,0));
             testCharacter = new Player(playerTexture, new Vector2(100, 100));
             basicSword = new Sword("Basic Sword",Content.Load<Texture2D>(@"images/Sword"),new Vector2(200,50),ItemType.Weapon);
