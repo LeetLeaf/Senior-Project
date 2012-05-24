@@ -16,6 +16,7 @@ namespace com.Kyle.Keebler
         public Vector2 Position { get; set; }
         public Texture2D Texture { get; set; }
         public bool CanCollide { get; set; }
+        public bool IsPickedUp { get; set; }
 
         public Rectangle CollisionRec
         {
@@ -57,6 +58,15 @@ namespace com.Kyle.Keebler
         public void Initialize()
         {
             throw new NotImplementedException();
+        }
+
+        public void CollisionAction(ICollidable collisionElement)
+        {
+        }
+
+        public void CollisionActionItem(Item item)
+        {
+
         }
 
         #endregion

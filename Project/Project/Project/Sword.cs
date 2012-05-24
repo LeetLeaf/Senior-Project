@@ -9,20 +9,18 @@ namespace com.Kyle.Keebler
 {
     public class Sword : Item
     {
-        public bool isPickedUp { get; set; }
-
         public Sword(String Name, Texture2D Texture, Vector2 Position, ItemType TypeOfItem)
         {
             this.Name = Name;
             this.Texture = Texture;
             this.Position = Position;
             this.TypeOfItem = TypeOfItem;
-            isPickedUp = false;
+            IsPickedUp = false;
 
         }
         public void Update(GameTime gameTime)
         {
-            if (isPickedUp)
+            if (IsPickedUp)
             {
                 Position=new Vector2(0, 0);
             }

@@ -110,6 +110,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="DefensiveAttributes.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Entrance.cs" />
     <Compile Include="ICollidable.cs" />
     <Compile Include="IMoveable.cs" />

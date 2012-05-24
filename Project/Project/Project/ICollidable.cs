@@ -10,5 +10,8 @@ namespace com.Kyle.Keebler
     {
         Rectangle CollisionRec { get; }
         bool CanCollide { get; set; }
+
+        void CollisionAction(ICollidable impactedElement);
+        void CollisionActionItem(Item impactedElement);
     }
 }

@@ -12,11 +12,12 @@ namespace com.Kyle.Keebler
     {
         //Properties
         public bool showItems {get; set;}
-        
+        public Inventory PlayerItems {get;set;}
 
-        public Player(Texture2D Texture, Vector2 Position)
+        public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture)
         {
-            this.Texture = Texture;
+            this.Texture = PlayerTexture;
+            PlayerItems = new Inventory(InventoryTexture);
             this.Position = Position;
             FrameSize = new Point(18, 24);
             showItems = false;
@@ -42,6 +43,7 @@ namespace com.Kyle.Keebler
                 new Tuple<Point, Point>(new Point(0, 2), new Point(0, 2)));
            idleFrames.Add(Direction.East, 
                 new Tuple<Point, Point>(new Point(0, 3), new Point(0, 3)));
+
 
         }
 
@@ -78,6 +80,7 @@ namespace com.Kyle.Keebler
             {
                 MovePosition(Direction.East, gameTime);
             }
+
             //Idle
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
                 && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
@@ -101,6 +104,24 @@ namespace com.Kyle.Keebler
             {
             }
             return collision;
+        }
+
+        public override void CollisionAction(ICollidable collisionElement)
+        {
+            //if (collisionElement)
+            //{
+            //    basicSword.isPickedUp = true;
+            //    playerItems.InventoryList.Add(basicSword);
+            //}
+        }
+
+        public override void CollisionActionItem(Item item)
+        {
+            item.IsPickedUp = true;
+            item.CanCollide = false;
+            item.CollisionAction(this);
+            PlayerItems.InventoryList.Add(item);
+
         }
 
     }

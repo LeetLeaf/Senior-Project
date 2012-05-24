@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace com.Kyle.Keebler
 {
-    class Inventory
+    public class Inventory
     {
         public List<Item> InventoryList { get; set; }
         public Texture2D Texture { get; set; }

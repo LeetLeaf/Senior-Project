@@ -19,21 +19,24 @@ namespace com.Kyle.Keebler
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D playerTexture;
+        Texture2D inventoryTexture;
 
         Player userPlayer = null;
-        Player testCharacter = null;
+        Enemy testCharacter = null;
         Sword basicSword = null;
-        Inventory playerItems = null;
 
         List<IMoveable> movingElements;
-        List<IRenderable> renderedObjects;
+        List<Item> itemsAvailable;
+        List<IRenderable> imovableObjects;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
             movingElements = new List<IMoveable>();
-            renderedObjects = new List<IRenderable>();
+            imovableObjects = new List<IRenderable>();
+            itemsAvailable = new List<Item>();
         }
 
         /// <summary>
@@ -45,9 +48,9 @@ namespace com.Kyle.Keebler
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
             base.Initialize();
-            
+
         }
 
         /// <summary>
@@ -59,15 +62,16 @@ namespace com.Kyle.Keebler
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerTexture = Content.Load<Texture2D>(@"images/Hero Sprite Sheet");
-            userPlayer = new Player(playerTexture,new Vector2(0,0));
-            testCharacter = new Player(playerTexture, new Vector2(100, 100));
-            basicSword = new Sword("Basic Sword",Content.Load<Texture2D>(@"images/Sword"),new Vector2(200,50),ItemType.Weapon);
-            playerItems = new Inventory(Content.Load<Texture2D>(@"images/Inventory"));
+            inventoryTexture = Content.Load<Texture2D>(@"images/Inventory");
+
+            userPlayer = new Player(playerTexture, new Vector2(0, 0), inventoryTexture);
+            testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
+            basicSword = new Sword("Basic Sword", Content.Load<Texture2D>(@"images/Sword"), new Vector2(200, 50), ItemType.Weapon);
 
             movingElements.Add(userPlayer);
             movingElements.Add(testCharacter);
 
-            renderedObjects.Add(basicSword);
+            itemsAvailable.Add(basicSword);
         }
 
         /// <summary>
@@ -94,27 +98,61 @@ namespace com.Kyle.Keebler
 
             foreach (IMoveable moveElement in movingElements)
             {
-                moveElement.Update(gameTime);
-                foreach(IMoveable otherElement in movingElements.Where(
-                    m => !m.Equals(moveElement) && 
-                    m.CanCollide))
+                foreach (IRenderable staticObject in imovableObjects)
+                {
+                    if (moveElement.Collide(staticObject.CollisionRec))
                     {
-                        moveElement.Collide(otherElement.CollisionRec);
+                        //TODO: What to do here
                     }
+                }
+
+                
+                foreach (IMoveable otherElement in movingElements.Where(
+                    m => !m.Equals(moveElement) &&
+                    m.CanCollide))
+                {
+                    if (moveElement.Collide(otherElement.CollisionRec))
+                    {
+                        moveElement.CollisionAction(otherElement);
+
+                    }
+                }
+
+                foreach (Item item in itemsAvailable)
+                {
+                    if (moveElement.Collide(item.CollisionRec))
+                    {
+                        moveElement.CollisionActionItem(item);
+                    }
+                }
+
+                moveElement.Update(gameTime);
             }
+            foreach (Item item in itemsAvailable)
+            {
+                item.Update(gameTime);
+            }
+
+            //TODO: does this need to be resolved.
+            //foreach (IRenderable staticObject in imovableObjects)
+            //{
+            //    staticObject.Update()
+            //}
+
+
             // TODO: Add your update logic here
             //userPlayer.Update(gameTime);
 
             //Collision Test
-            if(userPlayer.Collide(testCharacter.CollisionRec))
+            if (userPlayer.Collide(testCharacter.CollisionRec))
                 this.Exit();
-            if (userPlayer.Collide(basicSword.CollisionRec))
-            {
-                basicSword.isPickedUp = true;
-                playerItems.InventoryList.Add(basicSword);
-                
-            }
-            basicSword.Update(gameTime);
+            //if (userPlayer.Collide(basicSword.CollisionRec))
+            //{
+            //    basicSword.isPickedUp = true;
+            //    playerItems.InventoryList.Add(basicSword);
+
+            //}
+            //basicSword.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -130,8 +168,8 @@ namespace com.Kyle.Keebler
             userPlayer.Draw(spriteBatch);
             testCharacter.Draw(spriteBatch);
             basicSword.Draw(spriteBatch);
-            if(userPlayer.showItems)
-                playerItems.Draw(spriteBatch,Window.ClientBounds);
+            if (userPlayer.showItems)
+                userPlayer.PlayerItems.Draw(spriteBatch, Window.ClientBounds);
             spriteBatch.End();
 
             // TODO: Add your drawing code here

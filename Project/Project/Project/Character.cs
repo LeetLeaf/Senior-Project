@@ -60,8 +60,8 @@ namespace com.Kyle.Keebler
         public abstract bool ResolveAttack(); //Handles what happens when attacked?
         public abstract void Update(GameTime gameTime); //Used to Update the Character in the Game Class
         public abstract void Draw(SpriteBatch spriteBatch); //Used to Draw the Character in the Game Class
-
-
+        public abstract void CollisionAction(ICollidable collisionElement);
+        public abstract void CollisionActionItem(Item item);
         /// <summary>
         /// Updates the Player position on the screen when a certain direction is called.
         /// Draws the frames that correspond with direction the character is moving.
