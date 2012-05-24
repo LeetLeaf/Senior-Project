@@ -20,6 +20,7 @@ namespace com.Kyle.Keebler
         SpriteBatch spriteBatch;
         Texture2D playerTexture;
         Texture2D inventoryTexture;
+        SpriteFont gameFont;
 
         Player userPlayer = null;
         Enemy testCharacter = null;
@@ -63,8 +64,9 @@ namespace com.Kyle.Keebler
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerTexture = Content.Load<Texture2D>(@"images/Hero Sprite Sheet");
             inventoryTexture = Content.Load<Texture2D>(@"images/Inventory");
+            gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
-            userPlayer = new Player(playerTexture, new Vector2(0, 0), inventoryTexture);
+            userPlayer = new Player(playerTexture, new Vector2(0, 0), inventoryTexture,gameFont);
             testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
             basicSword = new Sword("Basic Sword", Content.Load<Texture2D>(@"images/Sword"), new Vector2(200, 50), ItemType.Weapon);
 
@@ -108,8 +110,8 @@ namespace com.Kyle.Keebler
 
                 
                 foreach (IMoveable otherElement in movingElements.Where(
-                    m => !m.Equals(moveElement) &&
-                    m.CanCollide))
+                m => !m.Equals(moveElement) &&
+                m.CanCollide))
                 {
                     if (moveElement.Collide(otherElement.CollisionRec))
                     {
@@ -120,7 +122,7 @@ namespace com.Kyle.Keebler
 
                 foreach (Item item in itemsAvailable)
                 {
-                    if (moveElement.Collide(item.CollisionRec))
+                    if (moveElement.Collide(item.CollisionRec)&& item.CanCollide)
                     {
                         moveElement.CollisionActionItem(item);
                     }
@@ -144,8 +146,8 @@ namespace com.Kyle.Keebler
             //userPlayer.Update(gameTime);
 
             //Collision Test
-            if (userPlayer.Collide(testCharacter.CollisionRec))
-                this.Exit();
+            //if (userPlayer.Collide(testCharacter.CollisionRec))
+            //    this.Exit();
             //if (userPlayer.Collide(basicSword.CollisionRec))
             //{
             //    basicSword.isPickedUp = true;
@@ -167,7 +169,8 @@ namespace com.Kyle.Keebler
             spriteBatch.Begin();
             userPlayer.Draw(spriteBatch);
             testCharacter.Draw(spriteBatch);
-            basicSword.Draw(spriteBatch);
+            if(!basicSword.IsPickedUp)
+                basicSword.Draw(spriteBatch);
             if (userPlayer.showItems)
                 userPlayer.PlayerItems.Draw(spriteBatch, Window.ClientBounds);
             spriteBatch.End();

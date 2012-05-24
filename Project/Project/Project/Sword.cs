@@ -16,14 +16,12 @@ namespace com.Kyle.Keebler
             this.Position = Position;
             this.TypeOfItem = TypeOfItem;
             IsPickedUp = false;
+            CanCollide = true;
 
         }
         public void Update(GameTime gameTime)
         {
-            if (IsPickedUp)
-            {
-                Position=new Vector2(0, 0);
-            }
+           
         }
     }
 }

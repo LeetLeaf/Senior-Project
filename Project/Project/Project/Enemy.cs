@@ -14,6 +14,7 @@ namespace com.Kyle.Keebler
             this.Texture = PlayerTexture;
             this.Position = Position;
             FrameSize = new Point(18, 24);
+            CanCollide = true;
 
             movementRate = 2;
 
@@ -63,7 +64,7 @@ namespace com.Kyle.Keebler
 
         public override void CollisionAction(ICollidable collisionElement)
         {
-            
+            Position.X += 2;
         }
 
         public override void CollisionActionItem(Item item)

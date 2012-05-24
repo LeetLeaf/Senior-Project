@@ -13,13 +13,17 @@ namespace com.Kyle.Keebler
         //Properties
         public bool showItems {get; set;}
         public Inventory PlayerItems {get;set;}
+        public SpriteFont HealthHUDFont { get; set; }
 
-        public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture)
+        public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture, SpriteFont HealthHUDFont)
         {
             this.Texture = PlayerTexture;
             PlayerItems = new Inventory(InventoryTexture);
             this.Position = Position;
+            this.HealthHUDFont = HealthHUDFont;
             FrameSize = new Point(18, 24);
+            MaxHealth = 5;
+            CurrentHealth = MaxHealth;
             showItems = false;
 
             movementRate = 2;
@@ -64,14 +68,6 @@ namespace com.Kyle.Keebler
             {
                 showItems = !showItems;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                MovePosition(Direction.South, gameTime);
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                MovePosition(Direction.North, gameTime);
-            }
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 MovePosition(Direction.West, gameTime);
@@ -79,6 +75,14 @@ namespace com.Kyle.Keebler
             else if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 MovePosition(Direction.East, gameTime);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                MovePosition(Direction.South, gameTime);
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                MovePosition(Direction.North, gameTime);
             }
 
             //Idle
@@ -89,12 +93,20 @@ namespace com.Kyle.Keebler
                 
             }
 
+            if (CurrentHealth == 0)
+            {
+                Position = new Vector2(0, 0);
+                CurrentHealth = MaxHealth;
+            }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position,
                 renderFrame(), Color.White);
+            spriteBatch.DrawString(HealthHUDFont, "Health: " + CurrentHealth + "/" + MaxHealth,
+                Vector2.Zero, Color.White);
         }
 
         public override bool Collide(Rectangle collideRec)
@@ -108,6 +120,11 @@ namespace com.Kyle.Keebler
 
         public override void CollisionAction(ICollidable collisionElement)
         {
+            if (collisionElement is Enemy) 
+            { 
+                KnockBack(characterDirection);
+                CurrentHealth -= 1;
+            }
             //if (collisionElement)
             //{
             //    basicSword.isPickedUp = true;
@@ -117,12 +134,12 @@ namespace com.Kyle.Keebler
 
         public override void CollisionActionItem(Item item)
         {
+           
             item.IsPickedUp = true;
             item.CanCollide = false;
             item.CollisionAction(this);
             PlayerItems.InventoryList.Add(item);
-
+            
         }
-
     }
 }

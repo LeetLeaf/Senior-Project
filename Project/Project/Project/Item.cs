@@ -62,6 +62,7 @@ namespace com.Kyle.Keebler
 
         public void CollisionAction(ICollidable collisionElement)
         {
+
         }
 
         public void CollisionActionItem(Item item)
