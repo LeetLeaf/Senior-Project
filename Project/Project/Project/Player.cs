@@ -89,7 +89,11 @@ namespace com.Kyle.Keebler
             }
             else
             {
-                Timer(gameTime, CanMove);
+                TimeToWait -= gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeToWait < 0)
+                {
+                    CanMove = true;
+                }
             }
             //Idle
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
@@ -131,7 +135,7 @@ namespace com.Kyle.Keebler
                 KnockBack(characterDirection);
                 CurrentHealth -= 1;
                 CanMove = false;
-                TimeToWait = 120;
+                TimeToWait = 300;
             }
             //if (collisionElement)
             //{

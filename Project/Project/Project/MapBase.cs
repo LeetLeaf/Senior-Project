@@ -5,12 +5,8 @@ using System.Text;
 
 namespace com.Kyle.Keebler
 {
-    class MapBase
+    public class MapBase
     {
-        public Entrance mainEntrance
-        {
-            get;
-            set;
-        }
+        public Entrance mainEntrance { get; set; }
     }
 }

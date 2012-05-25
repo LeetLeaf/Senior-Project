@@ -5,7 +5,8 @@ using System.Text;
 
 namespace com.Kyle.Keebler
 {
-    class Entrance
+    public class Entrance
     {
+
     }
 }
