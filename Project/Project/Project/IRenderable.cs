@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace com.Kyle.Keebler
 {
-    interface IRenderable : ICollidable
+    public interface IRenderable : ICollidable
     {
         void Initialize();
         void Draw(SpriteBatch spriteBatch);

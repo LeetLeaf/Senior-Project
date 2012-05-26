@@ -7,6 +7,11 @@ namespace com.Kyle.Keebler
 {
     public class MapBase
     {
-        public Entrance mainEntrance { get; set; }
+        public List<IMoveable> EnemyPlayers { get; set; }
+        public List<Character> NonEnemyNpcs { get; set; }
+        public List<IRenderable> ImmovableObjects { get; set; }
+
+        public Entrance MainEntrance { get; set; }
+        public List<Entrance> Exits { get; set; }
     }
 }
