@@ -18,26 +18,39 @@ namespace com.Kyle.Keebler
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D playerTexture;
-        Texture2D inventoryTexture;
+        //Texture2D playerTexture;
+        //Texture2D inventoryTexture;
         SpriteFont gameFont;
 
         Player userPlayer = null;
         Enemy testCharacter = null;
         Sword basicSword = null;
+        MapBase currentMap = null;
 
-        List<IMoveable> movingElements;
-        List<Item> itemsAvailable;
-        List<IRenderable> imovableObjects;
+        public static Dictionary<string, Texture2D> Textures { get; set; }
+
+        //List<IMoveable> movingElements;
+        //List<Item> itemsAvailable;
+        //List<IRenderable> imovableObjects;
+
+        static Game1()
+        {
+            Textures = new Dictionary<string, Texture2D>();
+        }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            movingElements = new List<IMoveable>();
-            imovableObjects = new List<IRenderable>();
-            itemsAvailable = new List<Item>();
+            
+            
+
+            
+            
+            //movingElements = new List<IMoveable>();
+            //imovableObjects = new List<IRenderable>();
+            //itemsAvailable = new List<Item>();
         }
 
         /// <summary>
@@ -62,18 +75,25 @@ namespace com.Kyle.Keebler
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            playerTexture = Content.Load<Texture2D>(@"images/Hero Sprite Sheet");
-            inventoryTexture = Content.Load<Texture2D>(@"images/Inventory");
+            Textures.Add("player", Content.Load<Texture2D>(@"images/Hero Sprite Sheet"));
+            Textures.Add("inventory", Content.Load<Texture2D>(@"images/Inventory"));
+            Textures.Add("sword", Content.Load<Texture2D>(@"images/Sword"));
+
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
-            userPlayer = new Player(playerTexture, new Vector2(0, 0), inventoryTexture,gameFont);
-            testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
-            basicSword = new Sword("Basic Sword", Content.Load<Texture2D>(@"images/Sword"), new Vector2(200, 50), ItemType.Weapon);
+            userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"],gameFont);
 
-            movingElements.Add(userPlayer);
-            movingElements.Add(testCharacter);
+            currentMap = new BeginingMap(spriteBatch);
 
-            itemsAvailable.Add(basicSword);
+            currentMap.LoadContent(userPlayer);
+            //testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
+            //basicSword = new Sword("Basic Sword", Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
+
+            //movingElements.Add(userPlayer);
+            
+            //movingElements.Add(testCharacter);
+
+            //itemsAvailable.Add(basicSword);
         }
 
         /// <summary>
@@ -98,9 +118,9 @@ namespace com.Kyle.Keebler
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            foreach (IMoveable moveElement in movingElements)
+            foreach (IMoveable moveElement in currentMap.MovingElements)
             {
-                foreach (IRenderable staticObject in imovableObjects)
+                foreach (IRenderable staticObject in currentMap.ImmovableObjects)
                 {
                     if (moveElement.Collide(staticObject.CollisionRec))
                     {
@@ -108,8 +128,8 @@ namespace com.Kyle.Keebler
                     }
                 }
 
-                
-                foreach (IMoveable otherElement in movingElements.Where(
+
+                foreach (IMoveable otherElement in currentMap.MovingElements.Where(
                 m => !m.Equals(moveElement) &&
                 m.CanCollide))
                 {
@@ -120,7 +140,7 @@ namespace com.Kyle.Keebler
                     }
                 }
 
-                foreach (Item item in itemsAvailable)
+                foreach (Item item in currentMap.ItemsAvailable)
                 {
                     if (moveElement.Collide(item.CollisionRec)&& item.CanCollide)
                     {
@@ -130,7 +150,7 @@ namespace com.Kyle.Keebler
 
                 moveElement.Update(gameTime);
             }
-            foreach (Item item in itemsAvailable)
+            foreach (Item item in currentMap.ItemsAvailable)
             {
                 item.Update(gameTime);
             }
@@ -166,16 +186,13 @@ namespace com.Kyle.Keebler
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            currentMap.Draw(gameTime);
+
+
             spriteBatch.Begin();
-            userPlayer.Draw(spriteBatch);
-            testCharacter.Draw(spriteBatch);
-            if(!basicSword.IsPickedUp)
-                basicSword.Draw(spriteBatch);
             if (userPlayer.showItems)
                 userPlayer.PlayerItems.Draw(spriteBatch, Window.ClientBounds);
             spriteBatch.End();
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

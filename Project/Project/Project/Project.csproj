@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeginingMap.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="DefensiveAttributes.cs" />
     <Compile Include="Direction.cs" />
