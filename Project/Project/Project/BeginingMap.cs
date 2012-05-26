@@ -20,9 +20,11 @@ namespace com.Kyle.Keebler
         {
             base.LoadContent(player);
 
+            player.MapBoundry = MapBoundry;
+
             Texture2D playerTexture = Game1.Textures["player"];
             
-            testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
+            testCharacter = new Enemy(Game1.Textures["blackKnight"], new Vector2(250, 250),player,MapBoundry);
             basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 
             MovingElements.Add(player);

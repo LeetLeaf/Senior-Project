@@ -39,12 +39,18 @@ namespace com.Kyle.Keebler
         public string Name { get; set; }  //Name of the Character
         public Texture2D Texture { get; set; } //Sprite Sheet assigned to the Character
         public Point FrameSize { get; set; } //The size of one frame on the Sprite Sheet
+        public Rectangle MapBoundry { get; set; }
 
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
         public bool CanMove { get; set; } //Allows a character to move or not to move 
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
+
+        public Vector2 getPosition()
+        {
+            return Position; 
+        }
 
         public Rectangle CollisionRec
         {
@@ -94,6 +100,7 @@ namespace com.Kyle.Keebler
                     break;
             }
             WalkCharacter(gameTime, direction);
+            BoundryCollision(MapBoundry);
         }
 
         /// <summary>
@@ -175,18 +182,25 @@ namespace com.Kyle.Keebler
                 Position.Y += 15;
         }
 
-        public void Timer(GameTime gameTime, bool change)
+        public void BoundryCollision(Rectangle map)
         {
-            if (TimeToWait > 0)
+            if (Position.X > map.Width - FrameSize.X)
             {
-                TimeToWait -= gameTime.ElapsedGameTime.Milliseconds;
-                if (TimeToWait <= 0)
-                {
-                    change = true;
-                }
+                Position.X = map.Width - FrameSize.X;
+            }
+            if (Position.Y > map.Height - FrameSize.Y)
+            {
+                Position.Y = map.Height - FrameSize.Y;
+            }
+            if (Position.X < map.X)
+            {
+                Position.X = map.X;
+            }
+            if (Position.Y < map.Y)
+            {
+                Position.Y = map.Y;
             }
         }
-
         #region IRenderable Members
 
         public void Initialize()

@@ -6,9 +6,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace com.Kyle.Keebler
 {
-    public class Tile : IRenderable, ICollidable
+    public class Tile : IRenderable
     {
 
+        public string TileName {get; set;}
         public Texture2D Texture { get; set; }
         public Point FrameSize { get; set; }
         public Vector2 TilesFrame { get; set; }
@@ -28,8 +29,9 @@ namespace com.Kyle.Keebler
 
         public bool CanCollide { get; set; }
 
-        public Tile(Texture2D Texture,bool CanCollide)
+        public Tile(string TileName, Texture2D Texture,bool CanCollide)
         {
+            this.TileName = TileName;
             this.Texture = Texture;
             this.CanCollide = CanCollide;
             FrameSize = new Point(16, 16);

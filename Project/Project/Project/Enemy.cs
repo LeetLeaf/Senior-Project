@@ -9,24 +9,31 @@ namespace com.Kyle.Keebler
 {
     public class Enemy : Character
     {
-        public Enemy(Texture2D PlayerTexture, Vector2 Position)
+
+        public Player userPlayer { get; set; }
+        private Vector2 Desination;
+
+        public Enemy(Texture2D PlayerTexture, Vector2 Position, Player userPlayer,Rectangle MapBoundry)
         {
             this.Texture = PlayerTexture;
             this.Position = Position;
             FrameSize = new Point(18, 24);
             CanCollide = true;
-
-            movementRate = 2;
+            this.userPlayer = userPlayer;
+            Desination = new Vector2(100, 100);
+            movementRate = 1;
+            characterDirection = Direction.South;
+            this.MapBoundry = MapBoundry;
 
             walkFrames = new Dictionary<Direction,Tuple<Point,Point>>();
             walkFrames.Add(Direction.North, 
-                new Tuple<Point, Point>(new Point(0, 4),new Point(4, 4)));
+                new Tuple<Point, Point>(new Point(0, 3),new Point(4, 3)));
             walkFrames.Add(Direction.South, 
-                new Tuple<Point, Point>(new Point(0, 1), new Point(4, 1)));
+                new Tuple<Point, Point>(new Point(0, 0), new Point(4, 0)));
             walkFrames.Add(Direction.West, 
-                new Tuple<Point, Point>(new Point(0, 2), new Point(4, 2)));
+                new Tuple<Point, Point>(new Point(0, 1), new Point(4, 1)));
            walkFrames.Add(Direction.East, 
-                new Tuple<Point, Point>(new Point(0, 3), new Point(4, 3)));
+                new Tuple<Point, Point>(new Point(0, 2), new Point(4, 2)));
 
             idleFrames = new Dictionary<Direction,Tuple<Point,Point>>();
             idleFrames.Add(Direction.North, 
@@ -51,12 +58,22 @@ namespace com.Kyle.Keebler
             throw new NotImplementedException();
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            
+            if (CanMove)
+            {
+                Chase(userPlayer.getPosition(), gameTime);
+            }
+            else
+            {
+                TimeToWait -= gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeToWait == 0)
+                    CanMove = true;
+            }
+            BoundryCollision(MapBoundry);
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position,
                  renderFrame(), Color.White);
@@ -64,12 +81,37 @@ namespace com.Kyle.Keebler
 
         public override void CollisionAction(ICollidable collisionElement)
         {
-            Position.X += 2;
+            if (collisionElement is Player)
+            {
+                TimeToWait = 200;
+                CanMove = false;
+            }
         }
 
         public override void CollisionActionItem(Item item)
         {
             
         }
+
+        public void Chase(Vector2 Desination, GameTime gameTime)
+        {
+            if (Position.X < Desination.X)
+            {
+                MovePosition(Direction.East, gameTime);
+            }
+            else if (Position.X > Desination.X)
+            {
+                MovePosition(Direction.West, gameTime);
+            }
+            if (Position.Y < Desination.Y)
+            {
+                MovePosition(Direction.South, gameTime);
+            }
+            else if (Position.Y > Desination.Y)
+            {
+                MovePosition(Direction.North, gameTime);
+            }
+        }
+
     }
 }

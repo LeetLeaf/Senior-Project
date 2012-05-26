@@ -78,6 +78,7 @@ namespace com.Kyle.Keebler
             Textures.Add("player", Content.Load<Texture2D>(@"images/Hero Sprite Sheet"));
             Textures.Add("inventory", Content.Load<Texture2D>(@"images/Inventory"));
             Textures.Add("sword", Content.Load<Texture2D>(@"images/Sword"));
+            Textures.Add("blackKnight", Content.Load<Texture2D>(@"images/Black Knight Sheet"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
@@ -149,6 +150,7 @@ namespace com.Kyle.Keebler
                 }
 
                 moveElement.Update(gameTime);
+
             }
             foreach (Item item in currentMap.ItemsAvailable)
             {

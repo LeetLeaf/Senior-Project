@@ -59,7 +59,19 @@ namespace com.Kyle.Keebler
         
         public override bool ResolveAttack()
         {
-            throw new NotImplementedException();
+            if (PlayerItems.InventoryList.Count > 0)
+            {
+                if (PlayerItems.InventoryList[0].TypeOfItem == ItemType.Weapon)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+                return false;
         }
 
         public override void Update(GameTime gameTime)
@@ -85,6 +97,10 @@ namespace com.Kyle.Keebler
                 else if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     MovePosition(Direction.North, gameTime);
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.X))
+                {
+                    ResolveAttack();
                 }
             }
             else
@@ -135,7 +151,7 @@ namespace com.Kyle.Keebler
                 KnockBack(characterDirection);
                 CurrentHealth -= 1;
                 CanMove = false;
-                TimeToWait = 300;
+                TimeToWait = 80;
             }
             //if (collisionElement)
             //{
@@ -153,5 +169,6 @@ namespace com.Kyle.Keebler
             PlayerItems.InventoryList.Add(item);
             
         }
+
     }
 }
