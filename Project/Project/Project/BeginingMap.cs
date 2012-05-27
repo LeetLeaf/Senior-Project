@@ -12,7 +12,8 @@ namespace com.Kyle.Keebler
         Enemy testCharacter;
         Item basicSword;
 
-        public BeginingMap(SpriteBatch spriteBatch) : base(spriteBatch)
+        public BeginingMap(SpriteBatch spriteBatch, Rectangle mapBoundry) 
+            : base(spriteBatch, mapBoundry)
         {
         }
 
