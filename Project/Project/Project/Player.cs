@@ -151,8 +151,8 @@ namespace com.Kyle.Keebler
         {
             if (collisionElement is Enemy) 
             {
-                foreach (Enemy enemy in theMap.MovingElements)
-                {
+                foreach (Enemy enemy in theMap.MovingElements) //The only reason I have this here is because 
+                {                                               // I want to get the CharacterDirection from whatever playe collided with
                     if (enemy.Equals(collisionElement)) ;
                     {
                         KnockBack(enemy.CharacterDirection);
