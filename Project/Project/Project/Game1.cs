@@ -86,7 +86,7 @@ namespace com.Kyle.Keebler
 
             currentMap = new BeginingMap(spriteBatch);
 
-            currentMap.LoadContent(userPlayer);
+            currentMap.LoadContent(userPlayer,currentMap);
             //testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
             //basicSword = new Sword("Basic Sword", Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 

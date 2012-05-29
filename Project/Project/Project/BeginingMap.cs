@@ -16,15 +16,15 @@ namespace com.Kyle.Keebler
         {
         }
 
-        public override void LoadContent(Player player)
+        public override void LoadContent(Player player, MapBase theMap)
         {
-            base.LoadContent(player);
+            base.LoadContent(player,theMap);
 
             player.MapBoundry = MapBoundry;
 
             Texture2D playerTexture = Game1.Textures["player"];
             
-            testCharacter = new Enemy(Game1.Textures["blackKnight"], new Vector2(250, 250),player,MapBoundry);
+            testCharacter = new Enemy(Game1.Textures["blackKnight"], new Vector2(250, 250),theMap,MapBoundry);
             basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 
             MovingElements.Add(player);

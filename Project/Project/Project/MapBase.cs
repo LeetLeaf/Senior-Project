@@ -36,7 +36,7 @@ namespace com.Kyle.Keebler
             MapBoundry = new Rectangle(0, 0, 300, 300);
         }
 
-        public virtual void LoadContent(Player player)
+        public virtual void LoadContent(Player player, MapBase theMap)
         {
             userPlayer = player;
 
@@ -44,6 +44,7 @@ namespace com.Kyle.Keebler
 
         public virtual void Draw(GameTime gameTime)
         {
+
         }
     }
 }

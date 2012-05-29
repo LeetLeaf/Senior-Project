@@ -11,16 +11,15 @@ namespace com.Kyle.Keebler
     {
 
         public Player userPlayer { get; set; }
-        private Vector2 Desination;
+        private MapBase theMap;
 
-        public Enemy(Texture2D PlayerTexture, Vector2 Position, Player userPlayer,Rectangle MapBoundry)
+        public Enemy(Texture2D PlayerTexture, Vector2 Position, MapBase Map,Rectangle MapBoundry)
         {
             this.Texture = PlayerTexture;
             this.Position = Position;
             FrameSize = new Point(18, 24);
             CanCollide = true;
-            this.userPlayer = userPlayer;
-            Desination = new Vector2(100, 100);
+            theMap = Map;
             movementRate = 1;
             characterDirection = Direction.South;
             this.MapBoundry = MapBoundry;
@@ -62,7 +61,7 @@ namespace com.Kyle.Keebler
         {
             if (CanMove)
             {
-                Chase(userPlayer.getPosition(), gameTime);
+                Chase(theMap.userPlayer.getPosition(), gameTime);
             }
             else
             {
@@ -83,7 +82,7 @@ namespace com.Kyle.Keebler
         {
             if (collisionElement is Player)
             {
-                TimeToWait = 200;
+                TimeToWait = 1000;
                 CanMove = false;
             }
         }
