@@ -153,7 +153,7 @@ namespace com.Kyle.Keebler
             {
                 foreach (Enemy enemy in theMap.MovingElements) //The only reason I have this here is because 
                 {                                               // I want to get the CharacterDirection from whatever playe collided with
-                    if (enemy.Equals(collisionElement)) ;
+                    if (enemy.Equals(collisionElement)) 
                     {
                         KnockBack(enemy.CharacterDirection);
                         CurrentHealth -= 1;
