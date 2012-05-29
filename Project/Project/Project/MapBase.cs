@@ -24,7 +24,7 @@ namespace com.Kyle.Keebler
         public Rectangle MapBoundry { get; protected set; }
 
 
-        public MapBase(SpriteBatch spriteBatch)
+        public MapBase(SpriteBatch spriteBatch, Rectangle mapBoundry)
         {
             MapSpriteBatch = spriteBatch;
             MovingElements = new List<IMoveable>();
@@ -33,7 +33,7 @@ namespace com.Kyle.Keebler
             MainEntrance = new Entrance();
             Exits = new List<Entrance>();
 
-            MapBoundry = new Rectangle(0, 0, 300, 300);
+            MapBoundry = mapBoundry;
         }
 
         public virtual void LoadContent(Player player, MapBase theMap)

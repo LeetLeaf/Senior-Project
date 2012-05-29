@@ -84,7 +84,7 @@ namespace com.Kyle.Keebler
 
             userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"],gameFont);
 
-            currentMap = new BeginingMap(spriteBatch);
+            currentMap = new BeginingMap(spriteBatch, new Rectangle(0,0, Window.ClientBounds.Width, Window.ClientBounds.Height));
 
             currentMap.LoadContent(userPlayer,currentMap);
             //testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
