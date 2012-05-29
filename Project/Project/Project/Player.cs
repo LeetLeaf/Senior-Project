@@ -15,12 +15,15 @@ namespace com.Kyle.Keebler
         public Inventory PlayerItems {get;set;}
         public SpriteFont HealthHUDFont { get; set; }
 
-        public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture, SpriteFont HealthHUDFont)
+        private MapBase theMap;
+
+        public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture, SpriteFont HealthHUDFont, MapBase theMap)
         {
             this.Texture = PlayerTexture;
             PlayerItems = new Inventory(InventoryTexture);
             this.Position = Position;
             this.HealthHUDFont = HealthHUDFont;
+            this.theMap = theMap;
             FrameSize = new Point(18, 24);
             MaxHealth = 5;
             CurrentHealth = MaxHealth;
@@ -115,7 +118,7 @@ namespace com.Kyle.Keebler
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
                 && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
             {
-                IdleCharacter(gameTime, characterDirection);
+                IdleCharacter(gameTime, CharacterDirection);
                 
             }
 
@@ -147,11 +150,18 @@ namespace com.Kyle.Keebler
         public override void CollisionAction(ICollidable collisionElement)
         {
             if (collisionElement is Enemy) 
-            { 
-                KnockBack(characterDirection);
-                CurrentHealth -= 1;
-                CanMove = false;
-                TimeToWait = 80;
+            {
+                foreach (Enemy enemy in theMap.MovingElements)
+                {
+                    if (enemy.Equals(collisionElement)) ;
+                    {
+                        KnockBack(enemy.CharacterDirection);
+                        CurrentHealth -= 1;
+                        CanMove = false;
+                        TimeToWait = 80;
+                    }
+                }
+                
             }
             //if (collisionElement)
             //{

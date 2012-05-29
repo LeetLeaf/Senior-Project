@@ -28,7 +28,6 @@ namespace com.Kyle.Keebler
         private int millisecondsPerFrame = 150;
 
         //Movement Elements
-        protected Direction characterDirection = Direction.South;
         protected Dictionary<Direction, Tuple<Point, Point>> walkFrames;
         protected Dictionary<Direction, Tuple<Point, Point>> idleFrames;
 
@@ -44,6 +43,7 @@ namespace com.Kyle.Keebler
         public int MaxHealth { get; set; } //Max health a character has
         public int CurrentHealth { get; set; } //Current amount of health a character has
         public bool CanMove { get; set; } //Allows a character to move or not to move 
+        public Direction CharacterDirection { get; set; }
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
 
@@ -152,7 +152,7 @@ namespace com.Kyle.Keebler
 
         public void WalkCharacter(GameTime gameTime, Direction direction)
         {
-            characterDirection = direction;
+            CharacterDirection = direction;
 
             CurrentFrame.Y = walkFrames[direction].Item1.Y;
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;

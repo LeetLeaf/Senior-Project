@@ -21,7 +21,7 @@ namespace com.Kyle.Keebler
             CanCollide = true;
             theMap = Map;
             movementRate = 1;
-            characterDirection = Direction.South;
+            CharacterDirection = Direction.South;
             this.MapBoundry = MapBoundry;
 
             walkFrames = new Dictionary<Direction,Tuple<Point,Point>>();

@@ -82,9 +82,9 @@ namespace com.Kyle.Keebler
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
-            userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"],gameFont);
-
             currentMap = new BeginingMap(spriteBatch, new Rectangle(0,0, Window.ClientBounds.Width, Window.ClientBounds.Height));
+
+            userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"],gameFont,currentMap);
 
             currentMap.LoadContent(userPlayer,currentMap);
             //testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
