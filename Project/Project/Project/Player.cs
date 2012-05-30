@@ -153,7 +153,7 @@ namespace com.Kyle.Keebler
             {
 
                 Enemy collidedEnemy = collisionElement as Enemy;
-                KnockBack(collidedEnemy.CharacterDirection);
+                KnockBack(Utilities.FlipDirection(collidedEnemy.CharacterDirection));
                 CurrentHealth -= 1;
                 CanMove = false;
                 TimeToWait = 80;
