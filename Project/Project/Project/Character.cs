@@ -173,13 +173,13 @@ namespace com.Kyle.Keebler
         public void KnockBack(Direction direction)
         {
             if (direction == Direction.East)
-                Position.X -= 15;
-            if (direction == Direction.West)
                 Position.X += 15;
+            if (direction == Direction.West)
+                Position.X -= 15;
             if (direction == Direction.South)
-                Position.Y -= 15;
-            if (direction == Direction.North)
                 Position.Y += 15;
+            if (direction == Direction.North)
+                Position.Y -= 15;
         }
 
         public void BoundryCollision(Rectangle map)
