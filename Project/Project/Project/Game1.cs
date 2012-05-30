@@ -79,6 +79,7 @@ namespace com.Kyle.Keebler
             Textures.Add("inventory", Content.Load<Texture2D>(@"images/Inventory"));
             Textures.Add("sword", Content.Load<Texture2D>(@"images/Sword"));
             Textures.Add("blackKnight", Content.Load<Texture2D>(@"images/Black Knight Sheet"));
+            Textures.Add("mario", Content.Load<Texture2D>(@"images/Mario"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 

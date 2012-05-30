@@ -10,6 +10,7 @@ namespace com.Kyle.Keebler
     public class BeginingMap : MapBase
     {
         Enemy testCharacter;
+        Enemy enemy2;
         Item basicSword;
 
         public BeginingMap(SpriteBatch spriteBatch, Rectangle mapBoundry) 
@@ -26,10 +27,13 @@ namespace com.Kyle.Keebler
             Texture2D playerTexture = Game1.Textures["player"];
             
             testCharacter = new Enemy(Game1.Textures["blackKnight"], new Vector2(250, 250),theMap,MapBoundry);
+            enemy2 = new Enemy(Game1.Textures["blackKnight"], new Vector2(500, 500), theMap, MapBoundry);
+
             basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 
             MovingElements.Add(player);
             MovingElements.Add(testCharacter);
+            MovingElements.Add(enemy2);
 
             ItemsAvailable.Add(basicSword);
         }
@@ -39,6 +43,7 @@ namespace com.Kyle.Keebler
             MapSpriteBatch.Begin();
             userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
+            enemy2.Draw(MapSpriteBatch);
             //if (!basicSword.IsPickedUp)
                 basicSword.Draw(MapSpriteBatch);
 

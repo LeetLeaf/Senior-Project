@@ -120,6 +120,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="MapBase.cs" />
+    <Compile Include="Mario.cs" />
     <Compile Include="OffensiveAttributes.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
