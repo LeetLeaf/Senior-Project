@@ -151,17 +151,13 @@ namespace com.Kyle.Keebler
         {
             if (collisionElement is Enemy) 
             {
-                foreach (Character enemy in theMap.MovingElements) //The only reason I have this here is because 
-                {                                               // I want to get the CharacterDirection from whatever playe collided with
-                    if (enemy.Equals(collisionElement)) 
-                    {
-                        KnockBack(enemy.CharacterDirection);
-                        CurrentHealth -= 1;
-                        CanMove = false;
-                        TimeToWait = 80;
-                    }
-                }
-                
+
+                Enemy collidedEnemy = collisionElement as Enemy;
+                KnockBack(collidedEnemy.CharacterDirection);
+                CurrentHealth -= 1;
+                CanMove = false;
+                TimeToWait = 80;
+   
             }
             //if (collisionElement)
             //{
