@@ -156,8 +156,9 @@ namespace com.Kyle.Keebler
                 KnockBack(Utilities.FlipDirection(collidedEnemy.CharacterDirection));
                 CurrentHealth -= 1;
                 CanMove = false;
-                TimeToWait = 80;
-   
+                TimeToWait = 1000;
+                collidedEnemy.TimeToWait = 1000;
+                collidedEnemy.CanMove = false;
             }
             //if (collisionElement)
             //{
@@ -168,10 +169,12 @@ namespace com.Kyle.Keebler
 
         public override void CollisionActionItem(Item item)
         {
-           
-            item.IsPickedUp = true;
-            item.CanCollide = false;
-            item.CollisionAction(this);
+
+            item.PickMeUp(this);
+            //item.IsPickedUp = true;
+            ////item.CanCollide = false;
+            //item.CollisionAction(this);
+            //item.HeldBy = this;
             PlayerItems.InventoryList.Add(item);
             
         }

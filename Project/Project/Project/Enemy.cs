@@ -23,6 +23,8 @@ namespace com.Kyle.Keebler
             movementRate = 1;
             CharacterDirection = Direction.South;
             this.MapBoundry = MapBoundry;
+            MaxHealth = 5;
+            CurrentHealth = MaxHealth;
 
             walkFrames = new Dictionary<Direction,Tuple<Point,Point>>();
             walkFrames.Add(Direction.North, 
@@ -69,6 +71,13 @@ namespace com.Kyle.Keebler
                 if (TimeToWait == 0)
                     CanMove = true;
             }
+
+            if (CurrentHealth == 0)
+            {
+                Position = new Vector2(0, 0);
+                CurrentHealth = MaxHealth;
+            }
+
             BoundryCollision(MapBoundry);
         }
 
@@ -89,7 +98,7 @@ namespace com.Kyle.Keebler
 
         public override void CollisionActionItem(Item item)
         {
-            
+            CurrentHealth--;
         }
 
         public void Chase(Vector2 Desination, GameTime gameTime)

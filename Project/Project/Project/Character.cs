@@ -14,7 +14,7 @@ namespace com.Kyle.Keebler
         #region Fields
 
         //Time to before a change is avaible 
-        protected int TimeToWait = 0;
+        public int TimeToWait {get;set;}
 
         //Position of the Character on the screen
         protected Vector2 Position = new Vector2(0,0); 

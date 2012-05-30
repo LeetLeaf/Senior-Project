@@ -39,7 +39,7 @@ namespace com.Kyle.Keebler
             MapSpriteBatch.Begin();
             userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
-            if (!basicSword.IsPickedUp)
+            //if (!basicSword.IsPickedUp)
                 basicSword.Draw(MapSpriteBatch);
 
             MapSpriteBatch.End();

@@ -23,5 +23,11 @@ namespace com.Kyle.Keebler
         {
            
         }
+
+        public override void PickMeUp(Character pickedUpBy)
+        {
+            base.PickMeUp(pickedUpBy);
+            this.CanCollide = true;
+        }
     }
 }
