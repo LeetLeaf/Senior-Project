@@ -122,12 +122,12 @@ namespace com.Kyle.Keebler
                 
             }
 
-            if (CurrentHealth == 0)
+            if (CurrentHealth <= 0)
             {
                 Position = new Vector2(0, 0);
                 CurrentHealth = MaxHealth;
             }
-
+            BoundryCollision(MapBoundry);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -153,11 +153,16 @@ namespace com.Kyle.Keebler
             {
 
                 Enemy collidedEnemy = collisionElement as Enemy;
-                KnockBack(Utilities.FlipDirection(collidedEnemy.CharacterDirection));
+                KnockBack(Utilities.FlipDirection(collidedEnemy.CharacterDirection),15);
+                if(BoundryCollision(theMap.MapBoundry))
+                {
+                    collidedEnemy.KnockBack(collidedEnemy.CharacterDirection, 15);
+                }
                 CurrentHealth -= 1;
                 CanMove = false;
-                TimeToWait = 1000;
-                collidedEnemy.TimeToWait = 1000;
+                TimeToWait = 500;
+
+                collidedEnemy.TimeToWait = 800;
                 collidedEnemy.CanMove = false;
             }
             //if (collisionElement)

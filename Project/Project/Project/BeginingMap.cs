@@ -12,10 +12,12 @@ namespace com.Kyle.Keebler
         Enemy testCharacter;
         Enemy enemy2;
         Item basicSword;
+        TileLayoutDataSource datasource;
 
         public BeginingMap(SpriteBatch spriteBatch, Rectangle mapBoundry) 
             : base(spriteBatch, mapBoundry)
         {
+            
         }
 
         public override void LoadContent(Player player, MapBase theMap)
@@ -23,6 +25,9 @@ namespace com.Kyle.Keebler
             base.LoadContent(player,theMap);
 
             player.MapBoundry = MapBoundry;
+
+            datasource = new TileLayoutDataSource("BeginingMapTileLayout.csv", Game1.Textures["tiles"]);
+            datasource.LoadContent();
 
             Texture2D playerTexture = Game1.Textures["player"];
             
@@ -34,13 +39,14 @@ namespace com.Kyle.Keebler
             MovingElements.Add(player);
             MovingElements.Add(testCharacter);
             MovingElements.Add(enemy2);
-
+            ImmovableObjects.AddRange(datasource.GetCollisionTiles());
             ItemsAvailable.Add(basicSword);
         }
 
         public override void Draw(GameTime gameTime)
         {
             MapSpriteBatch.Begin();
+            datasource.Draw(MapSpriteBatch);
             userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
             enemy2.Draw(MapSpriteBatch);

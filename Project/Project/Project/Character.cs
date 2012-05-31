@@ -170,36 +170,41 @@ namespace com.Kyle.Keebler
             }
         }
 
-        public void KnockBack(Direction direction)
+        public void KnockBack(Direction direction, int length)
         {
             if (direction == Direction.East)
-                Position.X += 15;
+                Position.X -= length;
             if (direction == Direction.West)
-                Position.X -= 15;
+                Position.X += length;
             if (direction == Direction.South)
-                Position.Y += 15;
+                Position.Y -= length;
             if (direction == Direction.North)
-                Position.Y -= 15;
+                Position.Y += length;
         }
 
-        public void BoundryCollision(Rectangle map)
+        public bool BoundryCollision(Rectangle map)
         {
             if (Position.X > map.Width - FrameSize.X)
             {
                 Position.X = map.Width - FrameSize.X;
+                return true;
             }
             if (Position.Y > map.Height - FrameSize.Y)
             {
                 Position.Y = map.Height - FrameSize.Y;
+                return true;
             }
             if (Position.X < map.X)
             {
                 Position.X = map.X;
+                return true;
             }
             if (Position.Y < map.Y)
             {
                 Position.Y = map.Y;
+                return true;
             }
+            return false;
         }
         #region IRenderable Members
 

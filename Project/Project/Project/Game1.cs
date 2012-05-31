@@ -43,11 +43,11 @@ namespace com.Kyle.Keebler
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            
-            
 
-            
-            
+
+
+
+
             //movingElements = new List<IMoveable>();
             //imovableObjects = new List<IRenderable>();
             //itemsAvailable = new List<Item>();
@@ -80,19 +80,23 @@ namespace com.Kyle.Keebler
             Textures.Add("sword", Content.Load<Texture2D>(@"images/Sword"));
             Textures.Add("blackKnight", Content.Load<Texture2D>(@"images/Black Knight Sheet"));
             Textures.Add("mario", Content.Load<Texture2D>(@"images/Mario"));
+            Textures.Add("tiles", Content.Load<Texture2D>(@"images/Tiles"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
-            currentMap = new BeginingMap(spriteBatch, new Rectangle(0,0, Window.ClientBounds.Width, Window.ClientBounds.Height));
+            currentMap = new BeginingMap(spriteBatch, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height));
 
-            userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"],gameFont,currentMap);
+            userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"], gameFont, currentMap);
 
-            currentMap.LoadContent(userPlayer,currentMap);
+            currentMap.LoadContent(userPlayer, currentMap);
+
+
+
             //testCharacter = new Enemy(playerTexture, new Vector2(100, 100));
             //basicSword = new Sword("Basic Sword", Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 
             //movingElements.Add(userPlayer);
-            
+
             //movingElements.Add(testCharacter);
 
             //itemsAvailable.Add(basicSword);
@@ -144,9 +148,18 @@ namespace com.Kyle.Keebler
 
                 foreach (Item item in currentMap.ItemsAvailable)
                 {
-                    if (moveElement.Collide(item.CollisionRec)&& item.CanCollide)
+                    if (moveElement.Collide(item.CollisionRec) && item.CanCollide)
                     {
                         moveElement.CollisionActionItem(item);
+                    }
+                }
+
+                foreach (IRenderable staticObject in currentMap.ImmovableObjects)
+                {
+                    if (moveElement.Collide(staticObject.CollisionRec))
+                    {
+                        moveElement.CanMove = false;
+                        moveElement.KnockBack(moveElement.CharacterDirection, 2);
                     }
                 }
 
@@ -158,11 +171,8 @@ namespace com.Kyle.Keebler
                 item.Update(gameTime);
             }
 
-            //TODO: does this need to be resolved.
-            //foreach (IRenderable staticObject in imovableObjects)
-            //{
-            //    staticObject.Update()
-            //}
+
+
 
 
             // TODO: Add your update logic here

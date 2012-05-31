@@ -12,5 +12,7 @@ namespace com.Kyle.Keebler
         void Update(GameTime gameTime);
         bool Collide(Rectangle collideRec);
         bool CanMove { get; set; }
+        void KnockBack(Direction direction, int length);
+        Direction CharacterDirection{get; set;}
     }
 }

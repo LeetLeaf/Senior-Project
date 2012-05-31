@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace com.Kyle.Keebler
 {
-    public class Tile : IRenderable
+    public class Tile : IRenderable, ICloneable
     {
 
         public string TileName {get; set;}
@@ -29,11 +29,12 @@ namespace com.Kyle.Keebler
 
         public bool CanCollide { get; set; }
 
-        public Tile(string TileName, Texture2D Texture,bool CanCollide)
+        public Tile(string TileName, Texture2D Texture,bool CanCollide,Vector2 TilesFrame)
         {
             this.TileName = TileName;
             this.Texture = Texture;
             this.CanCollide = CanCollide;
+            this.TilesFrame = TilesFrame;
             FrameSize = new Point(16, 16);
         }
 
@@ -63,5 +64,15 @@ namespace com.Kyle.Keebler
         {
             throw new NotImplementedException();
         }
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            Tile newTile = new Tile(this.TileName, this.Texture, this.CanCollide, this.TilesFrame);
+            return newTile;
+        }
+
+        #endregion
     }
 }

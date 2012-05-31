@@ -68,11 +68,11 @@ namespace com.Kyle.Keebler
             else
             {
                 TimeToWait -= gameTime.ElapsedGameTime.Milliseconds;
-                if (TimeToWait == 0)
+                if (TimeToWait < 0)
                     CanMove = true;
             }
 
-            if (CurrentHealth == 0)
+            if (CurrentHealth <= 0)
             {
                 Position = new Vector2(0, 0);
                 CurrentHealth = MaxHealth;
