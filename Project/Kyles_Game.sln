@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project\Project\Project.csproj", "{11D32658-C9B5-4F88-B975-40C513499F28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyles_Game", "Project\Project\Kyles_Game.csproj", "{11D32658-C9B5-4F88-B975-40C513499F28}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ProjectContent", "Project\ProjectContent\ProjectContent.contentproj", "{FE254885-2644-44C8-921D-0D47325EF663}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectContent", "Project\ProjectContent\ProjectContent.contentproj", "{FE254885-2644-44C8-921D-0D47325EF663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
