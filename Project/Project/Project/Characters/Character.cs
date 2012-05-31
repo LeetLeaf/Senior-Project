@@ -5,8 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections;
+using com.Kyle.Keebler.Items;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Characters
 {
     public abstract class Character : IRenderable, IMoveable
     {

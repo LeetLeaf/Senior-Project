@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Items
 {
     public class Inventory
     {

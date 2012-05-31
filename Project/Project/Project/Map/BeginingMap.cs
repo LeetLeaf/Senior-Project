@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using com.Kyle.Keebler.Characters;
+using com.Kyle.Keebler.Items;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Map
 {
     public class BeginingMap : MapBase
     {
@@ -26,7 +28,7 @@ namespace com.Kyle.Keebler
 
             player.MapBoundry = MapBoundry;
 
-            datasource = new TileLayoutDataSource("BeginingMapTileLayout.csv", Game1.Textures["tiles"]);
+            datasource = new TileLayoutDataSource(@"Map\BeginingMapTileLayout.csv", Game1.Textures["tiles"]);
             datasource.LoadContent();
 
             Texture2D playerTexture = Game1.Textures["player"];

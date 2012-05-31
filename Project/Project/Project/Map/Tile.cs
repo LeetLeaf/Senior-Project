@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace com.Kyle.Keebler
+using com.Kyle.Keebler.Items;
+
+namespace com.Kyle.Keebler.Map
 {
     public class Tile : IRenderable, ICloneable
     {

@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using com.Kyle.Keebler.Characters;
+using com.Kyle.Keebler.Map;
+using com.Kyle.Keebler.Items;
 
 namespace com.Kyle.Keebler
 {

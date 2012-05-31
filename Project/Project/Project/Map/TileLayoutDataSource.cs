@@ -9,7 +9,7 @@ using System.Data.OleDb;
 using System.IO;
 using Microsoft.Xna.Framework;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Map
 {
     
     public class TileLayoutDataSource

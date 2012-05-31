@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using com.Kyle.Keebler.Map;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Characters
 {
     public class Mario : Enemy
     {

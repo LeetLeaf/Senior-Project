@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using com.Kyle.Keebler.Characters;
 
-namespace com.Kyle.Keebler
+namespace com.Kyle.Keebler.Items
 {
     public class Sword : Item
     {
