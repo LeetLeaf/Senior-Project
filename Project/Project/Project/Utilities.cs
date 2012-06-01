@@ -26,33 +26,32 @@ namespace com.Kyle.Keebler
         }
         public static Direction DirectionTo(IRenderable item1, IRenderable item2)
         {
-            if (item2.getPosition().X <= item1.getPosition().X &&
-                item1.getPosition().X <= item2.getPosition().X + item2.getFrameSize().X)
+            Point middlePoint1 = new Point((int)item1.getPosition().X + item1.getFrameSize().X / 2, (int)item1.getPosition().Y + item1.getFrameSize().X / 2);
+            Point middlePoint2 = new Point((int)item2.getPosition().X + item2.getFrameSize().X / 2, (int)item2.getPosition().Y + item2.getFrameSize().X / 2);
+
+            if (item1.getPosition().X < middlePoint2.X &&
+                middlePoint2.X < item1.getPosition().X + item1.getFrameSize().X)
             {
-                if (item1.getPosition().Y <= item2.getPosition().Y)
+                if (middlePoint1.Y < middlePoint2.Y)
                 {
                     return Direction.South;
                 }
-                else if(item1.getPosition().Y >= item2.getPosition().Y+item2.getFrameSize().Y)
+                if (middlePoint1.Y > middlePoint2.Y)
                 {
                     return Direction.North;
                 }
             }
-            else if (item2.getPosition().X+item2.getFrameSize().X  >= item1.getPosition().X)
+            if (middlePoint1.X < middlePoint2.X)
             {
-                if (item2.getPosition().Y <= item1.getPosition().Y &&
-                item1.getPosition().Y <= item2.getPosition().Y + item2.getFrameSize().Y)
-                {
-                    return Direction.East;
-                }
-
+                return Direction.East;
             }
-            else if (item2.getPosition().Y <= item1.getPosition().Y &&
-                item1.getPosition().Y <= item2.getPosition().Y + item2.getFrameSize().Y)
+            if (middlePoint1.X > middlePoint2.X)
             {
                 return Direction.West;
             }
-            return Direction.North;
+           
+
+            return Direction.East;
         }
     }
 }
