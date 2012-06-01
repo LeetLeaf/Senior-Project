@@ -11,6 +11,7 @@ namespace com.Kyle.Keebler
     {
         void Initialize();
         void Draw(SpriteBatch spriteBatch);
-        
+        Vector2 getPosition();
+        Point getFrameSize();
     }
 }

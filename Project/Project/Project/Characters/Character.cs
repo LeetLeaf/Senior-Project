@@ -53,6 +53,11 @@ namespace com.Kyle.Keebler.Characters
             return Position; 
         }
 
+        public Point getFrameSize()
+        {
+            return FrameSize;
+        }
+
         public Rectangle CollisionRec
         {
             get
@@ -206,6 +211,30 @@ namespace com.Kyle.Keebler.Characters
                 return true;
             }
             return false;
+        }
+        public void BoundryCollisionReverse(Rectangle map)
+        {
+            if (CollisionRec.X + FrameSize.X > map.X)
+            {
+                Position.X -= movementRate * 2;
+                
+            }
+            if (CollisionRec.Y + FrameSize.Y > map.Y)
+            {
+                Position.Y -= movementRate * 2;
+               
+            }
+            if (CollisionRec.X < map.X + map.Height)
+            {
+                Position.X += movementRate * 2;
+                
+            }
+            if (CollisionRec.Y < map.Y + map.Height)
+            {
+                Position.Y += movementRate * 2;
+                
+            }
+
         }
         #region IRenderable Members
 

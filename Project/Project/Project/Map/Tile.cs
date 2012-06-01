@@ -22,11 +22,21 @@ namespace com.Kyle.Keebler.Map
             get
             {
                 return new Rectangle(
-                    (int)Position.X + 5,
-                    (int)Position.Y + 5,
-                    FrameSize.X - 5,
-                    FrameSize.Y - 5);
+                    (int)Position.X,
+                    (int)Position.Y,
+                    FrameSize.X,
+                    FrameSize.Y);
             }
+        }
+
+        public Vector2 getPosition()
+        {
+            return Position;
+        }
+
+        public Point getFrameSize()
+        {
+            return FrameSize;throw new NotImplementedException();
         }
 
         public bool CanCollide { get; set; }
@@ -66,7 +76,6 @@ namespace com.Kyle.Keebler.Map
         {
             throw new NotImplementedException();
         }
-
         #region ICloneable Members
 
         public object Clone()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace com.Kyle.Keebler
 {
-    public interface IMoveable : ICollidable
+    public interface IMoveable : ICollidable , IRenderable
     {
         void MovePosition(Direction direction, GameTime gameTime);
         void Update(GameTime gameTime);

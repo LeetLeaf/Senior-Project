@@ -161,8 +161,10 @@ namespace com.Kyle.Keebler
                 {
                     if (moveElement.Collide(staticObject.CollisionRec))
                     {
-                        moveElement.CanMove = false;
-                        moveElement.KnockBack(moveElement.CharacterDirection, 2);
+                        //moveElement.CanMove = false;
+                        Character character = moveElement as Character;
+                        //character.BoundryCollisionReverse(staticObject.CollisionRec);
+                        character.KnockBack(Utilities.FlipDirection(Utilities.DirectionTo(staticObject,character)),2);
                     }
                 }
 

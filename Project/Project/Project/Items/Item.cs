@@ -44,6 +44,13 @@ namespace com.Kyle.Keebler.Items
 
         }
 
+        public Vector2 getPosition()
+        {
+            return Position;
+        }
+
+       
+
         #region IRenderable Members
 
         public void Update(GameTime gameTime)
@@ -98,6 +105,11 @@ namespace com.Kyle.Keebler.Items
         {
             this.IsPickedUp = true;
             this.HeldBy = pickedUpBy;
+        }
+
+        public Point getFrameSize()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
