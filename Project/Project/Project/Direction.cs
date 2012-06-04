@@ -7,9 +7,9 @@ namespace com.Kyle.Keebler
 {
     public enum Direction
     {
-        North,
-        South,
-        East,
-        West
+        South = 0,
+        West = 1,
+        North = 2,
+        East = 3
     }
 }

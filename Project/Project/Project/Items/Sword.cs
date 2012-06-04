@@ -30,5 +30,22 @@ namespace com.Kyle.Keebler.Items
             base.PickMeUp(pickedUpBy);
             this.CanCollide = true;
         }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            float rotation = 0;
+            if (HeldBy != null)
+            {
+                //rotation rate in radians 
+                rotation = (int)HeldBy.CharacterDirection * (float)(Math.PI / 2.0);
+            }
+
+            spriteBatch.Draw(Texture, new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height),
+                null, Color.White, rotation,new Vector2(Texture.Width, Texture.Height),SpriteEffects.None, 1.0f);
+
+
+            //base.Draw(spriteBatch);
+        }
+
     }
 }
