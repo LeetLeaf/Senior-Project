@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TextBox.cs" />
     <Compile Include="Map\BeginingMap.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Direction.cs" />

@@ -184,7 +184,7 @@ namespace com.Kyle.Keebler.Characters
             CurrentFrame.X = attackFrames[direction].Item2.X;
             CurrentFrame.Y = attackFrames[direction].Item2.Y;
             CanMove = false;
-            TimeToWait = 300;
+            TimeToWait = 200;
         }
 
         public void KnockBack(Direction direction, int length)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using com.Kyle.Keebler.Characters;
 using com.Kyle.Keebler.Items;
 
@@ -15,6 +16,7 @@ namespace com.Kyle.Keebler.Map
         Enemy enemy2;
         Item basicSword;
         TileLayoutDataSource datasource;
+        TextBox textBox;
 
         public BeginingMap(SpriteBatch spriteBatch, Rectangle mapBoundry) 
             : base(spriteBatch, mapBoundry)
@@ -35,6 +37,7 @@ namespace com.Kyle.Keebler.Map
             
             testCharacter = new Enemy(Game1.Textures["blackKnight"], new Vector2(250, 250),theMap,MapBoundry);
             enemy2 = new Enemy(Game1.Textures["blackKnight"], new Vector2(500, 500), theMap, MapBoundry);
+            textBox = new TextBox(Game1.gameFont,Game1.Textures["textBox"]);
 
             basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
 
@@ -56,6 +59,7 @@ namespace com.Kyle.Keebler.Map
             {
                 basicSword.Draw(MapSpriteBatch);
             }
+            textBox.Draw(MapSpriteBatch, "Hello this is the Text Box and you are Playing Kyle's Game have fun!!");
             MapSpriteBatch.End();
         }
     }

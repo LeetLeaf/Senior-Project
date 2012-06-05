@@ -22,11 +22,6 @@ namespace com.Kyle.Keebler.Items
         }
         public void Update(GameTime gameTime)
         {
-            Player userPlayer = HeldBy as Player;
-            if (userPlayer.Attacking || !this.IsPickedUp)
-            {
-                CanCollide = true;
-            }
         }   
 
         public override void PickMeUp(Character pickedUpBy)

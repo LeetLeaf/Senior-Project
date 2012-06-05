@@ -177,7 +177,7 @@ namespace com.Kyle.Keebler.Characters
                 }
                 CurrentHealth -= 1;
                 CanMove = false;
-                TimeToWait = 500;
+                TimeToWait = 300;
 
                 collidedEnemy.TimeToWait = 800;
                 collidedEnemy.CanMove = false;

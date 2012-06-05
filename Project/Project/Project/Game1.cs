@@ -23,7 +23,6 @@ namespace com.Kyle.Keebler
         SpriteBatch spriteBatch;
         //Texture2D playerTexture;
         //Texture2D inventoryTexture;
-        SpriteFont gameFont;
 
         Player userPlayer = null;
         Enemy testCharacter = null;
@@ -31,7 +30,7 @@ namespace com.Kyle.Keebler
         MapBase currentMap = null;
 
         public static Dictionary<string, Texture2D> Textures { get; set; }
-
+        public static SpriteFont gameFont { get; set; }
         //List<IMoveable> movingElements;
         //List<Item> itemsAvailable;
         //List<IRenderable> imovableObjects;
@@ -84,6 +83,7 @@ namespace com.Kyle.Keebler
             Textures.Add("blackKnight", Content.Load<Texture2D>(@"images/Black Knight Sheet"));
             Textures.Add("mario", Content.Load<Texture2D>(@"images/Mario"));
             Textures.Add("tiles", Content.Load<Texture2D>(@"images/Tiles"));
+            Textures.Add("textBox", Content.Load<Texture2D>(@"images/TextBox"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
