@@ -22,8 +22,12 @@ namespace com.Kyle.Keebler.Items
         }
         public void Update(GameTime gameTime)
         {
-           
-        }
+            Player userPlayer = HeldBy as Player;
+            if (userPlayer.Attacking || !this.IsPickedUp)
+            {
+                CanCollide = true;
+            }
+        }   
 
         public override void PickMeUp(Character pickedUpBy)
         {
@@ -41,7 +45,7 @@ namespace com.Kyle.Keebler.Items
             }
 
             spriteBatch.Draw(Texture, new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height),
-                null, Color.White, rotation,new Vector2(Texture.Width, Texture.Height),SpriteEffects.None, 1.0f);
+                null, Color.White, rotation, new Vector2(Texture.Width, Texture.Height), SpriteEffects.None, 1.0f);
 
 
             //base.Draw(spriteBatch);

@@ -26,7 +26,7 @@ namespace com.Kyle.Keebler.Items
             {
                 return new Rectangle(
                     (int)Position.X + 2, (int)Position.Y + 2,
-                    Texture.Width - 2, Texture.Height - 2);
+                    Texture.Width -2, Texture.Height -2);
                 
             }
         }
@@ -41,7 +41,7 @@ namespace com.Kyle.Keebler.Items
             this.Texture = Texture;
             this.Position = Position;
             this.TypeOfItem = TypeOfItem;
-
+            
         }
 
         public Vector2 getPosition()
@@ -60,22 +60,33 @@ namespace com.Kyle.Keebler.Items
                 if (HeldBy.CharacterDirection == Direction.West)
                 {
                     Position.X = HeldBy.CollisionRec.Center.X - (HeldBy.CollisionRec.Width / 2) - Texture.Width;
-                    Position.Y = HeldBy.CollisionRec.Center.Y;
+                    Position.Y = HeldBy.CollisionRec.Center.Y + 5;
                 }
                 else if (HeldBy.CharacterDirection == Direction.North)
                 {
                     Position.X = HeldBy.CollisionRec.Center.X;
-                    Position.Y = HeldBy.CollisionRec.Center.Y - (HeldBy.CollisionRec.Height / 2) - Texture.Height;
+                    Position.Y = HeldBy.CollisionRec.Center.Y - (HeldBy.CollisionRec.Height / 2);
                 }
                 else if (HeldBy.CharacterDirection == Direction.South)
                 {
                     Position.X = HeldBy.CollisionRec.Center.X;
-                    Position.Y = HeldBy.CollisionRec.Center.Y + (HeldBy.CollisionRec.Height / 2) + Texture.Width;
+                    Position.Y = HeldBy.CollisionRec.Center.Y + (HeldBy.CollisionRec.Height / 2);
                 }
                 else // Direction.East
                 {
-                    Position.X = HeldBy.CollisionRec.Center.X + (HeldBy.CollisionRec.Width / 2) + Texture.Height;
-                    Position.Y = HeldBy.CollisionRec.Center.Y;
+                    Position.X = HeldBy.CollisionRec.Center.X + (HeldBy.CollisionRec.Width / 2) + Texture.Width/2;
+                    Position.Y = HeldBy.CollisionRec.Center.Y - 4;
+                }
+            }
+            if (HeldBy != null)
+            {
+                if (HeldBy.Attacking || !IsPickedUp)
+                {
+                    CanCollide = true;
+                }
+                else
+                {
+                    CanCollide = false;
                 }
             }
         }

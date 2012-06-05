@@ -16,7 +16,7 @@ namespace com.Kyle.Keebler.Characters
         public bool showItems {get; set;}
         public Inventory PlayerItems {get;set;}
         public SpriteFont HealthHUDFont { get; set; }
-
+        
         private MapBase theMap;
 
         public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture, SpriteFont HealthHUDFont, MapBase theMap)
@@ -53,6 +53,16 @@ namespace com.Kyle.Keebler.Characters
                 new Tuple<Point, Point>(new Point(0, 2), new Point(0, 2)));
            idleFrames.Add(Direction.East, 
                 new Tuple<Point, Point>(new Point(0, 3), new Point(0, 3)));
+
+           attackFrames = new Dictionary<Direction, Tuple<Point, Point>>();
+            attackFrames.Add(Direction.North,
+                new Tuple<Point,Point>(new Point(3,4),new Point(3,4)));
+            attackFrames.Add(Direction.South,
+                new Tuple<Point,Point>(new Point(3,1),new Point(3,1)));
+            attackFrames.Add(Direction.West,
+                new Tuple<Point,Point>(new Point(0,2),new Point(1,2)));
+            attackFrames.Add(Direction.East,
+                new Tuple<Point,Point>(new Point(3,3),new Point(3,3)));
 
 
         }
@@ -105,7 +115,19 @@ namespace com.Kyle.Keebler.Characters
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.X))
                 {
-                    ResolveAttack();
+                    AttackCharacter(gameTime, CharacterDirection);
+                    Attacking = true;
+                }
+                else 
+                {
+                    Attacking = false;
+                }
+                //Idle
+                if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
+                    && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
+                {
+                    IdleCharacter(gameTime, CharacterDirection);
+
                 }
             }
             else
@@ -115,13 +137,6 @@ namespace com.Kyle.Keebler.Characters
                 {
                     CanMove = true;
                 }
-            }
-            //Idle
-            if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
-                && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
-            {
-                IdleCharacter(gameTime, CharacterDirection);
-                
             }
 
             if (CurrentHealth <= 0)

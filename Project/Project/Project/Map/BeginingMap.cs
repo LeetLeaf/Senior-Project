@@ -52,9 +52,10 @@ namespace com.Kyle.Keebler.Map
             userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
             enemy2.Draw(MapSpriteBatch);
-            //if (!basicSword.IsPickedUp)
+            if (userPlayer.Attacking || !basicSword.IsPickedUp)
+            {
                 basicSword.Draw(MapSpriteBatch);
-
+            }
             MapSpriteBatch.End();
         }
     }

@@ -31,6 +31,7 @@ namespace com.Kyle.Keebler.Characters
         //Movement Elements
         protected Dictionary<Direction, Tuple<Point, Point>> walkFrames;
         protected Dictionary<Direction, Tuple<Point, Point>> idleFrames;
+        protected Dictionary<Direction, Tuple<Point, Point>> attackFrames;
 
         protected int movementRate = 2;
 
@@ -45,6 +46,7 @@ namespace com.Kyle.Keebler.Characters
         public int CurrentHealth { get; set; } //Current amount of health a character has
         public bool CanMove { get; set; } //Allows a character to move or not to move 
         public Direction CharacterDirection { get; set; }
+        public bool Attacking { get; set; }
 
         public int ExperiencePointValue { get; set; } //How much experience points the character gives???
 
@@ -174,6 +176,15 @@ namespace com.Kyle.Keebler.Characters
                         CurrentFrame.Y = walkFrames[direction].Item1.Y;
                 }
             }
+        }
+
+        public void AttackCharacter(GameTime gameTime, Direction direction)
+        {
+            CharacterDirection = direction;
+            CurrentFrame.X = attackFrames[direction].Item2.X;
+            CurrentFrame.Y = attackFrames[direction].Item2.Y;
+            CanMove = false;
+            TimeToWait = 300;
         }
 
         public void KnockBack(Direction direction, int length)
