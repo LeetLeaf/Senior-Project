@@ -108,6 +108,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map\Dungeon1.cs" />
+    <Compile Include="Map\DungeonTiles.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="Map\BeginingMap.cs" />
     <Compile Include="Characters\Character.cs" />
@@ -172,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="Map\Dungeon1TileLayout.csv" />
     <None Include="Map\BeginingMapTileLayout.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

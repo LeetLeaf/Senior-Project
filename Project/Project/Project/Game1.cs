@@ -83,11 +83,12 @@ namespace com.Kyle.Keebler
             Textures.Add("blackKnight", Content.Load<Texture2D>(@"images/Black Knight Sheet"));
             Textures.Add("mario", Content.Load<Texture2D>(@"images/Mario"));
             Textures.Add("tiles", Content.Load<Texture2D>(@"images/Tiles"));
+            Textures.Add("dungeonTiles", Content.Load<Texture2D>(@"images/DungeonTiles"));
             Textures.Add("textBox", Content.Load<Texture2D>(@"images/TextBox"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
-            currentMap = new BeginingMap(spriteBatch, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height));
+            currentMap = new Dungeon1(spriteBatch, new Rectangle(156, 116, Window.ClientBounds.Width, Window.ClientBounds.Height));
 
             userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"], gameFont, currentMap);
 

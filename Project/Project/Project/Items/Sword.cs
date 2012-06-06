@@ -20,6 +20,50 @@ namespace com.Kyle.Keebler.Items
             CanCollide = true;
 
         }
+
+        public override Rectangle CollisionRec
+        {
+            get
+            {
+                Rectangle result = new Rectangle(
+                        (int)Position.X + 2, (int)Position.Y + 2,
+                        Texture.Width - 2, Texture.Height - 2);
+                if (IsPickedUp)
+                {
+                    switch (HeldBy.CharacterDirection)
+                    { 
+                        case(Direction.North):
+                            result = new Rectangle(
+                                (int)Position.X + 2, (int)Position.Y - 10,
+                                Texture.Width - 2, Texture.Height - 2);
+                            break;
+                        case (Direction.South):
+                            result = new Rectangle(
+                                (int)Position.X + 2, (int)Position.Y + 2,
+                                Texture.Width - 2, Texture.Height + 2);
+                            break;
+                        case (Direction.East):
+                            result = new Rectangle(
+                                (int)Position.X + 2, (int)Position.Y + 2,
+                                Texture.Width - 2, Texture.Height - 2);
+                            break;
+                        case (Direction.West):
+                            result = new Rectangle(
+                                (int)Position.X - 1, (int)Position.Y + 2,
+                                Texture.Width - 2, Texture.Height - 2);
+                            break;
+                    }
+                }
+                else
+                {
+                    result = new Rectangle(
+                        (int)Position.X + 2, (int)Position.Y + 2,
+                        Texture.Width - 2, Texture.Height - 2);
+                }
+                return result;
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
         }   

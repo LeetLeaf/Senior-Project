@@ -23,10 +23,10 @@ namespace com.Kyle.Keebler.Map
         DataSet data = new DataSet();
         //800x600
         //50x37.5
-        public TileLayoutDataSource(string resource, Texture2D Tiles)
+        public TileLayoutDataSource(string resource, TileManager MapTiles)
         {
             pixelMultiplier = 16;
-            MapTiles = new TileManager(Tiles);
+            this.MapTiles = MapTiles;
             TileList = new List<Tile>();
 
             datasource = resource;

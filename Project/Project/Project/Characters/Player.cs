@@ -92,28 +92,28 @@ namespace com.Kyle.Keebler.Characters
         public override void Update(GameTime gameTime)
         {
             if (CanMove)
-            {
+            {  
                 if (Keyboard.GetState().IsKeyDown(Keys.T))
                 {
                     showItems = !showItems;
                 }
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                if (Keyboard.GetState().IsKeyDown(Keys.Left) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
                 {
                     MovePosition(Direction.West, gameTime);
                 }
-                else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                else if (Keyboard.GetState().IsKeyDown(Keys.Right) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
                 {
                     MovePosition(Direction.East, gameTime);
                 }
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                if (Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
                 {
                     MovePosition(Direction.South, gameTime);
                 }
-                else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                else if (Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
                 {
                     MovePosition(Direction.North, gameTime);
                 }
-                if (Keyboard.GetState().IsKeyDown(Keys.X))
+                if (Keyboard.GetState().IsKeyDown(Keys.X) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
                 {
                     AttackCharacter(gameTime, CharacterDirection);
                     Attacking = true;
@@ -124,7 +124,8 @@ namespace com.Kyle.Keebler.Characters
                 }
                 //Idle
                 if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)
-                    && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left))
+                    && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Left)
+                    && GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X == 0 && GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y == 0)
                 {
                     IdleCharacter(gameTime, CharacterDirection);
 

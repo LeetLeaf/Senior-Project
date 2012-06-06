@@ -20,7 +20,7 @@ namespace com.Kyle.Keebler.Items
         public bool IsPickedUp { get; set; }
         public Character HeldBy { get; set; }
 
-        public Rectangle CollisionRec
+        public  virtual Rectangle CollisionRec
         {
             get
             {
@@ -65,7 +65,7 @@ namespace com.Kyle.Keebler.Items
                 else if (HeldBy.CharacterDirection == Direction.North)
                 {
                     Position.X = HeldBy.CollisionRec.Center.X;
-                    Position.Y = HeldBy.CollisionRec.Center.Y - (HeldBy.CollisionRec.Height / 2);
+                    Position.Y = HeldBy.CollisionRec.Center.Y - (HeldBy.CollisionRec.Height / 2)-5;
                 }
                 else if (HeldBy.CharacterDirection == Direction.South)
                 {
