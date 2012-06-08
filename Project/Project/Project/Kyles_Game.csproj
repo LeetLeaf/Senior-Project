@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\Chest.cs" />
     <Compile Include="Map\Dungeon1.cs" />
     <Compile Include="Map\DungeonTiles.cs" />
     <Compile Include="TextBox.cs" />

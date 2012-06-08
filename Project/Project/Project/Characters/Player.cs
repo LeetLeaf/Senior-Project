@@ -183,11 +183,18 @@ namespace com.Kyle.Keebler.Characters
                 collidedEnemy.TimeToWait = 800;
                 collidedEnemy.CanMove = false;
             }
-            //if (collisionElement)
-            //{
-            //    basicSword.isPickedUp = true;
-            //    playerItems.InventoryList.Add(basicSword);
-            //}
+            if (collisionElement is Chest)
+            { 
+                Chest thisChest = collisionElement as Chest;
+                if (Utilities.DirectionTo(this, thisChest) == Direction.North && this.Attacking)
+                {
+                    PlayerItems.InventoryList.Add(thisChest.chestItem);
+                    thisChest.empty = true;
+                    thisChest.chestItem.InChest = false;
+                    thisChest.chestItem.PickMeUp(this);
+                    
+                }
+            }
         }
 
         public override void CollisionActionItem(Item item)

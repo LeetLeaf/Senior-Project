@@ -29,7 +29,7 @@ namespace com.Kyle.Keebler
         Sword basicSword = null;
         MapBase currentMap = null;
 
-        private bool fullScreen = true;
+        private bool fullScreen = false;
 
         public static Dictionary<string, Texture2D> Textures { get; set; }
         public static SpriteFont gameFont { get; set; }
@@ -90,6 +90,7 @@ namespace com.Kyle.Keebler
             Textures.Add("tiles", Content.Load<Texture2D>(@"images/Tiles"));
             Textures.Add("dungeonTiles", Content.Load<Texture2D>(@"images/DungeonTiles"));
             Textures.Add("textBox", Content.Load<Texture2D>(@"images/TextBox"));
+            Textures.Add("chest", Content.Load<Texture2D>(@"images/Chest"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
@@ -134,73 +135,59 @@ namespace com.Kyle.Keebler
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            foreach (IMoveable moveElement in currentMap.MovingElements)
-            {
-                foreach (IRenderable staticObject in currentMap.ImmovableObjects)
-                {
-                    if (moveElement.Collide(staticObject.CollisionRec))
-                    {
-                        //TODO: What to do here
-                    }
-                }
-
-
-                foreach (IMoveable otherElement in currentMap.MovingElements.Where(
-                m => !m.Equals(moveElement) &&
-                m.CanCollide))
-                {
-                    if (moveElement.Collide(otherElement.CollisionRec))
-                    {
-                        moveElement.CollisionAction(otherElement);
-
-                    }
-                }
-
-                foreach (Item item in currentMap.ItemsAvailable)
-                {
-                    if (moveElement.Collide(item.CollisionRec) && item.CanCollide)
-                    {
-                        moveElement.CollisionActionItem(item);
-                    }
-                }
-
-                foreach (IRenderable staticObject in currentMap.ImmovableObjects)
-                {
-                    if (moveElement.Collide(staticObject.CollisionRec))
-                    {
-                        //moveElement.CanMove = false;
-                        Character character = moveElement as Character;
-                        //character.BoundryCollisionReverse(staticObject.CollisionRec);
-                        character.KnockBack(Utilities.FlipDirection(Utilities.DirectionTo(staticObject, character)), 2);
-                       
-                    }
-                }
-
-                moveElement.Update(gameTime);
-
-            }
-            foreach (Item item in currentMap.ItemsAvailable)
-            {
-                item.Update(gameTime);
-            }
-
-
-
-
-
-            // TODO: Add your update logic here
-            //userPlayer.Update(gameTime);
-
-            //Collision Test
-            //if (userPlayer.Collide(testCharacter.CollisionRec))
-            //    this.Exit();
-            //if (userPlayer.Collide(basicSword.CollisionRec))
+            //foreach (IMoveable moveElement in currentMap.MovingElements)
             //{
-            //    basicSword.isPickedUp = true;
-            //    playerItems.InventoryList.Add(basicSword);
+            //    foreach (IRenderable staticObject in currentMap.ImmovableObjects)
+            //    {
+            //        if (moveElement.Collide(staticObject.CollisionRec))
+            //        {
+            //            TODO: What to do here
+            //        }
+            //    }
+
+
+            //    foreach (IMoveable otherElement in currentMap.MovingElements.Where(
+            //    m => !m.Equals(moveElement) &&
+            //    m.CanCollide))
+            //    {
+            //        if (moveElement.Collide(otherElement.CollisionRec))
+            //        {
+            //            moveElement.CollisionAction(otherElement);
+
+            //        }
+            //    }
+
+            //    foreach (Item item in currentMap.ItemsAvailable)
+            //    {
+            //        if (moveElement.Collide(item.CollisionRec) && item.CanCollide)
+            //        {
+            //            moveElement.CollisionActionItem(item);
+            //        }
+            //    }
+
+            //    foreach (IRenderable staticObject in currentMap.ImmovableObjects)
+            //    {
+            //        if (moveElement.Collide(staticObject.CollisionRec))
+            //        {
+            //            moveElement.CanMove = false;
+            //            Character character = moveElement as Character;
+            //            character.BoundryCollisionReverse(staticObject.CollisionRec);
+            //            character.KnockBack(Utilities.FlipDirection(Utilities.DirectionTo(staticObject, character)), 2);
+            //            moveElement.CollisionAction(staticObject);
+            //        }
+            //    }
+
+            //    moveElement.Update(gameTime);
+                
 
             //}
-            //basicSword.Update(gameTime);
+            //foreach (Item item in currentMap.ItemsAvailable)
+            //{
+            //    item.Update(gameTime);
+            //}
+
+            currentMap.Update(gameTime);
+
             base.Update(gameTime);
         }
 

@@ -42,7 +42,7 @@ namespace com.Kyle.Keebler.Map
             enemy2 = new Enemy(Game1.Textures["blackKnight"], new Vector2(500, 500), theMap, MapBoundry);
             textBox = new TextBox(Game1.gameFont,Game1.Textures["textBox"]);
 
-            basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon);
+            basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 50), ItemType.Weapon,false);
 
             MovingElements.Add(player);
             MovingElements.Add(testCharacter);

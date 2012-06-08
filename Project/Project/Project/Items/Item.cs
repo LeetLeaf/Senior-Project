@@ -19,6 +19,7 @@ namespace com.Kyle.Keebler.Items
         public bool CanCollide { get; set; }
         public bool IsPickedUp { get; set; }
         public Character HeldBy { get; set; }
+        public bool InChest { get; set; }
 
         public  virtual Rectangle CollisionRec
         {
@@ -53,7 +54,7 @@ namespace com.Kyle.Keebler.Items
 
         #region IRenderable Members
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (IsPickedUp && HeldBy != null)
             {
@@ -88,6 +89,10 @@ namespace com.Kyle.Keebler.Items
                 {
                     CanCollide = false;
                 }
+            }
+            if (InChest)
+            {
+                CanCollide = false;
             }
         }
 

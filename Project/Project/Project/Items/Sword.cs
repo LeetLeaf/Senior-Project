@@ -10,7 +10,8 @@ namespace com.Kyle.Keebler.Items
 {
     public class Sword : Item
     {
-        public Sword(String Name, Texture2D Texture, Vector2 Position, ItemType TypeOfItem)
+
+        public Sword(String Name, Texture2D Texture, Vector2 Position, ItemType TypeOfItem,bool InChest)
         {
             this.Name = Name;
             this.Texture = Texture;
@@ -18,6 +19,7 @@ namespace com.Kyle.Keebler.Items
             this.TypeOfItem = TypeOfItem;
             IsPickedUp = false;
             CanCollide = true;
+            this.InChest = InChest;
 
         }
 
@@ -66,6 +68,7 @@ namespace com.Kyle.Keebler.Items
 
         public void Update(GameTime gameTime)
         {
+         
         }   
 
         public override void PickMeUp(Character pickedUpBy)
