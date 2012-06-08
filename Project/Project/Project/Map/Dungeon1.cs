@@ -18,7 +18,7 @@ namespace com.Kyle.Keebler.Map
         TileLayoutDataSource datasource;
         TileManager MapTiles;
 
-        public Dungeon1(SpriteBatch spriteBatch, Rectangle mapBoundry) 
+        public Dungeon1(SpriteBatch spriteBatch, Rectangle mapBoundry)
             : base(spriteBatch, mapBoundry)
         {
             MapBoundry = mapBoundry;
@@ -53,13 +53,24 @@ namespace com.Kyle.Keebler.Map
         {
             MapSpriteBatch.Begin();
             datasource.Draw(MapSpriteBatch);
-            userPlayer.Draw(MapSpriteBatch);
+            //userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
             enemy2.Draw(MapSpriteBatch);
-            if (userPlayer.Attacking || !basicSword.IsPickedUp)
+            if (userPlayer.CharacterDirection == Direction.North && userPlayer.Attacking)
             {
                 basicSword.Draw(MapSpriteBatch);
+                userPlayer.Draw(MapSpriteBatch);
             }
+            else
+            {
+                userPlayer.Draw(MapSpriteBatch);
+
+                if (userPlayer.Attacking || !basicSword.IsPickedUp)
+                {
+                    basicSword.Draw(MapSpriteBatch);
+                }
+            }
+
             MapSpriteBatch.End();
         }
     }

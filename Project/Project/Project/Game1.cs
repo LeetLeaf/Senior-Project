@@ -29,6 +29,8 @@ namespace com.Kyle.Keebler
         Sword basicSword = null;
         MapBase currentMap = null;
 
+        private bool fullScreen = true;
+
         public static Dictionary<string, Texture2D> Textures { get; set; }
         public static SpriteFont gameFont { get; set; }
         //List<IMoveable> movingElements;
@@ -45,7 +47,10 @@ namespace com.Kyle.Keebler
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferMultiSampling = false;
+            graphics.IsFullScreen = fullScreen;
 
 
 
@@ -125,6 +130,7 @@ namespace com.Kyle.Keebler
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.F1)) fullScreen = !fullScreen;
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape)) this.Exit();
 
