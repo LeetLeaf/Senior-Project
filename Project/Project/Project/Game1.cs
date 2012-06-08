@@ -25,6 +25,7 @@ namespace com.Kyle.Keebler
         //Texture2D inventoryTexture;
 
         Player userPlayer = null;
+        Player2 userPlayer2 = null;
         Enemy testCharacter = null;
         Sword basicSword = null;
         MapBase currentMap = null;
@@ -96,9 +97,11 @@ namespace com.Kyle.Keebler
 
             currentMap = new Dungeon1(spriteBatch, new Rectangle(156, 116, Window.ClientBounds.Width, Window.ClientBounds.Height));
 
+            userPlayer2 = new Player2(Textures["player"], new Vector2(400, 0), Textures["inventory"], gameFont, currentMap);
             userPlayer = new Player(Textures["player"], new Vector2(0, 0), Textures["inventory"], gameFont, currentMap);
+            
 
-            currentMap.LoadContent(userPlayer, currentMap);
+            currentMap.LoadContent(userPlayer, userPlayer2,currentMap);
 
 
 

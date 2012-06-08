@@ -17,6 +17,7 @@ namespace com.Kyle.Keebler.Map
         public List<IRenderable> ImmovableObjects { get; set; }
         public List<Item> ItemsAvailable { get; set; }
         public Player userPlayer;
+        public Player2 userPlayer2;
 
         public Entrance MainEntrance { get; set; }
         public List<Entrance> Exits { get; set; }
@@ -52,6 +53,12 @@ namespace com.Kyle.Keebler.Map
         public virtual void Draw(GameTime gameTime)
         {
 
+        }
+
+        public virtual void LoadContent(Player player, Player2 player2, MapBase currentMap)
+        {
+            userPlayer = player;
+            userPlayer2 = player2;
         }
     }
 }
