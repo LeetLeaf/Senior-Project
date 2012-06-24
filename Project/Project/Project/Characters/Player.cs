@@ -152,7 +152,7 @@ namespace com.Kyle.Keebler.Characters
         {
             spriteBatch.Draw(Texture, Position,
                 renderFrame(), Color.White);
-            spriteBatch.DrawString(HealthHUDFont, "Health: " + CurrentHealth + "/" + MaxHealth,
+            spriteBatch.DrawString(HealthHUDFont, "Player's Health: " + CurrentHealth + "/" + MaxHealth,
                 Vector2.Zero, Color.White);
         }
 

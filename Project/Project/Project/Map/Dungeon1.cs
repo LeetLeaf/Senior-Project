@@ -30,12 +30,11 @@ namespace com.Kyle.Keebler.Map
         {
             MapBoundry = mapBoundry;
         }
-        public override void LoadContent(Player player,Player2 player2, MapBase theMap)
+        public override void LoadContent(Player player, MapBase theMap)
         {
-            base.LoadContent(player, player2, theMap);
+            base.LoadContent(player, theMap);
 
             player.MapBoundry = MapBoundry;
-            player2.MapBoundry = MapBoundry;
 
             MapTiles = new DungeonTiles(Game1.Textures["dungeonTiles"]);
 
@@ -53,10 +52,8 @@ namespace com.Kyle.Keebler.Map
             basicSword = new Sword("Basic Sword", Game1.Textures["sword"], new Vector2(200, 300), ItemType.Weapon, true);
 
             swordChest = new Chest(basicSword, new Vector2(400, 200), Game1.Textures["chest"]);
-
             
             MovingElements.Add(player);
-            MovingElements.Add(player2);
             MovingElements.Add(testCharacter);
             
             MovingElements.Add(enemy2);
@@ -145,7 +142,7 @@ namespace com.Kyle.Keebler.Map
             MapSpriteBatch.Begin();
             datasource.Draw(MapSpriteBatch);
             swordChest.Draw(MapSpriteBatch);
-            //userPlayer.Draw(MapSpriteBatch);
+            userPlayer.Draw(MapSpriteBatch);
             testCharacter.Draw(MapSpriteBatch);
             enemy2.Draw(MapSpriteBatch);
 
@@ -159,21 +156,6 @@ namespace com.Kyle.Keebler.Map
                 userPlayer.Draw(MapSpriteBatch);
 
                 if ((userPlayer.Attacking && basicSword.IsPickedUp && basicSword.HeldBy == userPlayer)
-                    || (!basicSword.IsPickedUp && !basicSword.InChest))
-                {
-                    basicSword.Draw(MapSpriteBatch);
-                }
-            }
-            if (userPlayer2.CharacterDirection == Direction.North && userPlayer2.Attacking && basicSword.HeldBy == userPlayer2)
-            {
-                basicSword.Draw(MapSpriteBatch);
-                userPlayer2.Draw(MapSpriteBatch);
-            }
-            else
-            {
-                userPlayer2.Draw(MapSpriteBatch);
-
-                if ((userPlayer2.Attacking && basicSword.IsPickedUp && basicSword.HeldBy == userPlayer2)
                     || (!basicSword.IsPickedUp && !basicSword.InChest))
                 {
                     basicSword.Draw(MapSpriteBatch);

@@ -152,8 +152,8 @@ namespace com.Kyle.Keebler.Characters
         {
             spriteBatch.Draw(Texture, Position,
                 renderFrame(), Color.White);
-            spriteBatch.DrawString(HealthHUDFont, "Health: " + CurrentHealth + "/" + MaxHealth,
-                Vector2.Zero, Color.White);
+            spriteBatch.DrawString(HealthHUDFont, "Player2's Health: " + CurrentHealth + "/" + MaxHealth,
+                new Vector2(200, 0), Color.White);
         }
 
         public override bool Collide(Rectangle collideRec)
