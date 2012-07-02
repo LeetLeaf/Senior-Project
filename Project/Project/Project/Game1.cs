@@ -24,6 +24,8 @@ namespace com.Kyle.Keebler
         //Texture2D playerTexture;
         //Texture2D inventoryTexture;
 
+        Camera camera;
+
         Player userPlayer = null;
         Enemy testCharacter = null;
         Sword basicSword = null;
@@ -69,6 +71,7 @@ namespace com.Kyle.Keebler
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            camera = new Camera(GraphicsDevice.Viewport);
 
             base.Initialize();
 
@@ -189,6 +192,8 @@ namespace com.Kyle.Keebler
 
             currentMap.Update(gameTime);
 
+            camera.Update(gameTime, userPlayer, Window.ClientBounds);
+
             base.Update(gameTime);
         }
 
@@ -200,10 +205,12 @@ namespace com.Kyle.Keebler
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            
+
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                null,null,null,null,camera.transform);
             currentMap.Draw(gameTime);
-
-
-            spriteBatch.Begin();
             if (userPlayer.showItems)
                 userPlayer.PlayerItems.Draw(spriteBatch, Window.ClientBounds);
             spriteBatch.End();

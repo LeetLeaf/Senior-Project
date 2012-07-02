@@ -139,7 +139,7 @@ namespace com.Kyle.Keebler.Map
         }
         public override void Draw(GameTime gameTime)
         {
-            MapSpriteBatch.Begin();
+            //MapSpriteBatch.Begin();
             datasource.Draw(MapSpriteBatch);
             swordChest.Draw(MapSpriteBatch);
             userPlayer.Draw(MapSpriteBatch);
@@ -165,7 +165,7 @@ namespace com.Kyle.Keebler.Map
             {
                 textBox.Draw(MapSpriteBatch, "You got the sword now defeat the enemies!!");
             }
-            MapSpriteBatch.End();
+           // MapSpriteBatch.End();
         }
 
     }
