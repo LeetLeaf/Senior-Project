@@ -8,11 +8,11 @@ using com.Kyle.Keebler.Characters;
 
 namespace com.Kyle.Keebler
 {
-    class Camera
+    public class Camera
     {
         public Matrix transform;
         Viewport view;
-        Vector2 center;
+        public Vector2 center;
 
         public Camera(Viewport view)
         {

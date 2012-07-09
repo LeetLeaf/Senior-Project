@@ -18,6 +18,7 @@ namespace com.Kyle.Keebler.Characters
         public SpriteFont HealthHUDFont { get; set; }
         
         private MapBase theMap;
+        private Camera camera;
 
         public Player(Texture2D PlayerTexture, Vector2 Position,Texture2D InventoryTexture, SpriteFont HealthHUDFont, MapBase theMap)
         {
@@ -89,6 +90,11 @@ namespace com.Kyle.Keebler.Characters
                 return false;
         }
 
+        public void getCamera(Camera camera)
+        {
+            this.camera = camera;
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (CanMove)
@@ -153,7 +159,7 @@ namespace com.Kyle.Keebler.Characters
             spriteBatch.Draw(Texture, Position,
                 renderFrame(), Color.White);
             spriteBatch.DrawString(HealthHUDFont, "Player's Health: " + CurrentHealth + "/" + MaxHealth,
-                Vector2.Zero, Color.White);
+               new Vector2(camera.center.X + 200,camera.center.Y+150), Color.White);
         }
 
         public override bool Collide(Rectangle collideRec)

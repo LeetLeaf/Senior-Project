@@ -193,6 +193,8 @@ namespace com.Kyle.Keebler
             currentMap.Update(gameTime);
 
             camera.Update(gameTime, userPlayer, Window.ClientBounds);
+            userPlayer.getCamera(camera);
+
 
             base.Update(gameTime);
         }
