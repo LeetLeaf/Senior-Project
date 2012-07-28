@@ -94,6 +94,9 @@ namespace com.Kyle.Keebler
             Textures.Add("dungeonTiles", Content.Load<Texture2D>(@"images/DungeonTiles"));
             Textures.Add("textBox", Content.Load<Texture2D>(@"images/TextBox"));
             Textures.Add("chest", Content.Load<Texture2D>(@"images/Chest"));
+            Textures.Add("heartFull", Content.Load<Texture2D>(@"images/Heart Full"));
+            Textures.Add("heartHalf",Content.Load<Texture2D>(@"images/Heart Half"));
+            Textures.Add("heartEmpty", Content.Load<Texture2D>(@"images/Heart Empty"));
 
             gameFont = Content.Load<SpriteFont>(@"font\gameFont");
 
@@ -193,7 +196,7 @@ namespace com.Kyle.Keebler
             currentMap.Update(gameTime);
 
             camera.Update(gameTime, userPlayer, Window.ClientBounds);
-            userPlayer.getCamera(camera);
+            userPlayer.setCamera(camera);
 
 
             base.Update(gameTime);

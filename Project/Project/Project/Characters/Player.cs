@@ -28,7 +28,7 @@ namespace com.Kyle.Keebler.Characters
             this.HealthHUDFont = HealthHUDFont;
             this.theMap = theMap;
             FrameSize = new Point(18, 24);
-            MaxHealth = 5;
+            MaxHealth = 6;
             CurrentHealth = MaxHealth;
             CanMove = true;
             showItems = false;
@@ -90,9 +90,14 @@ namespace com.Kyle.Keebler.Characters
                 return false;
         }
 
-        public void getCamera(Camera camera)
+        public void setCamera(Camera camera)
         {
             this.camera = camera;
+        }
+
+        public Camera getCamera()
+        {
+            return camera;
         }
 
         public override void Update(GameTime gameTime)
@@ -158,8 +163,9 @@ namespace com.Kyle.Keebler.Characters
         {
             spriteBatch.Draw(Texture, Position,
                 renderFrame(), Color.White);
-            spriteBatch.DrawString(HealthHUDFont, "Player's Health: " + CurrentHealth + "/" + MaxHealth,
-               new Vector2(camera.center.X + 200,camera.center.Y+150), Color.White);
+            //spriteBatch.DrawString(HealthHUDFont, "Player's Health: " + CurrentHealth + "/" + MaxHealth,
+            //  new Vector2(camera.center.X + 200,camera.center.Y+150), Color.White);
+            DrawLife(spriteBatch);
         }
 
         public override bool Collide(Rectangle collideRec)
@@ -213,6 +219,42 @@ namespace com.Kyle.Keebler.Characters
             //item.HeldBy = this;
             PlayerItems.InventoryList.Add(item);
             
+        }
+
+        public void DrawLife(SpriteBatch spriteBatch)
+        {
+            
+            switch(CurrentHealth)
+            {
+                case 6:
+                    for (int i = 0; i < CurrentHealth / 2; i++)
+                    {
+                        spriteBatch.Draw(Game1.Textures["heartFull"],
+                            new Vector2(camera.center.X + 200 + (i * 32 + i*3), camera.center.Y + 150), Color.White);
+                    }
+                break;
+
+                case 5:
+                    spriteBatch.Draw(Game1.Textures["heartHalf"],
+                        new Vector2(camera.center.X + 200 + 2 * 32 + 2 * 3,camera.center.Y + 150), Color.White);
+                    for (int i = 0; i < CurrentHealth / 2; i++)
+                    {
+                        spriteBatch.Draw(Game1.Textures["heartFull"],
+                            new Vector2(camera.center.X + 200 + (i * 32 + i * 3), camera.center.Y + 150), Color.White);
+                    }
+                break;
+                
+                case 4:
+                    spriteBatch.Draw(Game1.Textures["heartEmpty"],
+                        new Vector2(camera.center.X + 200 + 2 * 32 + 2 * 3, camera.center.Y + 150), Color.White);
+                    for (int i = 0; i < CurrentHealth / 2; i++)
+                    {
+                        spriteBatch.Draw(Game1.Textures["heartFull"],
+                            new Vector2(camera.center.X + 200 + (i * 32 + i * 3), camera.center.Y + 150), Color.White);
+                    }
+                break;
+            }
+
         }
 
     }

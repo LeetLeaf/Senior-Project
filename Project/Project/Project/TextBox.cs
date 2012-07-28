@@ -14,17 +14,24 @@ namespace com.Kyle.Keebler
         public Vector2 Position { get; set; }
         public Texture2D textBox { get; set; }
         public Vector2 TextPosition { get; set; }
+
+        private Camera gameCamera;
         
         public TextBox(SpriteFont spriteFont, Texture2D textBox)
         {
             this.spriteFont = spriteFont;
             this.textBox = textBox;
-            Position = new Vector2(10, 250);
-            TextPosition = new Vector2(40, 270);
+            //Position = new Vector2(10, 250);
+            //TextPosition = new Vector2(40, 270);
         }
         public void Initialize()
         {
             throw new NotImplementedException();
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -34,7 +41,9 @@ namespace com.Kyle.Keebler
 
         public void Draw(SpriteBatch spriteBatch,string message)
         {
-            spriteBatch.Draw(textBox, Position, textBox.Bounds, Color.White, 0, Vector2.Zero, 13f, SpriteEffects.None, 0);
+            Position = new Vector2(gameCamera.center.X + 205, gameCamera.center.Y + 330);
+            TextPosition = new Vector2(gameCamera.center.X + 225, gameCamera.center.Y + 340);
+            spriteBatch.Draw(textBox, Position, textBox.Bounds, Color.White, 0, Vector2.Zero, 6.5f, SpriteEffects.None, 0);
             string messageFormated = "";
             bool check = false;
             for (int i = 0; i < message.Length; i++)
@@ -47,8 +56,13 @@ namespace com.Kyle.Keebler
                 }
             }
             
-            spriteBatch.DrawString(spriteFont, messageFormated, TextPosition, Color.White,0f,Vector2.Zero,2f,SpriteEffects.None,0);
+            spriteBatch.DrawString(spriteFont, messageFormated, TextPosition, Color.White,0f,Vector2.Zero,0.75f,SpriteEffects.None,0);
             
+        }
+
+        public void setCamera(Camera camera)
+        {
+            gameCamera = camera;
         }
 
         public Vector2 getPosition()

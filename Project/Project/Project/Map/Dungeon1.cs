@@ -132,6 +132,8 @@ namespace com.Kyle.Keebler.Map
                 }
             }
             TimeText -= gameTime.ElapsedGameTime.Milliseconds;
+            textBox.setCamera(userPlayer.getCamera());  //Camera must be set to textBox or else null error
+            textBox.Update(gameTime); //Update will only work if Camera is set
             if (TimeText < 0)
             {
                 TextCheck = false;
