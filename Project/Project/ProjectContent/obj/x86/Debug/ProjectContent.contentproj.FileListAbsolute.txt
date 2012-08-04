@@ -1,3 +1,4 @@
 c:\users\1\documents\visual studio 2010\Projects\Project\Project\ProjectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Kyle Keebler\Senior-Project\Project\Project\ProjectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Jeff\Documents\Visual Studio 2010\Projects\SeniorProject\Project\Project\Project\ProjectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\1\Documents\GitHub\Senior-Project\Project\Project\ProjectContent\obj\x86\Debug\ResolveAssemblyReference.cache

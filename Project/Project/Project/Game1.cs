@@ -214,7 +214,8 @@ namespace com.Kyle.Keebler
 
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
-                null,null,null,null,camera.transform);
+                SamplerState.PointClamp,null,null,null,camera.transform);
+           
             currentMap.Draw(gameTime);
             if (userPlayer.showItems)
                 userPlayer.PlayerItems.Draw(spriteBatch, Window.ClientBounds);
