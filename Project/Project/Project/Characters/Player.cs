@@ -253,35 +253,6 @@ namespace com.Kyle.Keebler.Characters
                             new Vector2(camera.center.X + 200 + (i * 32 + i * 3), camera.center.Y + 150), Color.White);
                     }
                 break;
-
-                case 3:
-                    spriteBatch.Draw(Game1.Textures["heartEmpty"],
-                        new Vector2(camera.center.X + 200 + 2 * 32 + 2 * 3, camera.center.Y + 150), Color.White);
-                    spriteBatch.Draw(Game1.Textures["heartHalf"],
-                        new Vector2(camera.center.X + 200 + 1 * 32 + 1 * 3, camera.center.Y + 150), Color.White);
-                    spriteBatch.Draw(Game1.Textures["heartFull"],
-                        new Vector2(camera.center.X + 200, camera.center.Y + 150), Color.White);
-                break;
-
-                case 2:
-                    for (int i = 1; i < MaxHealth / 2; i++)
-                    {
-                        spriteBatch.Draw(Game1.Textures["heartEmpty"],
-                            new Vector2(camera.center.X + 200 + (i * 32 + i * 3), camera.center.Y + 150), Color.White);
-                    }
-                    spriteBatch.Draw(Game1.Textures["heartFull"],
-                        new Vector2(camera.center.X + 200, camera.center.Y + 150), Color.White);
-                break;
-
-                case 1:
-                    for (int i = 1; i < MaxHealth / 2; i++)
-                    {
-                        spriteBatch.Draw(Game1.Textures["heartEmpty"],
-                            new Vector2(camera.center.X + 200 + (i * 32 + i * 3), camera.center.Y + 150), Color.White);
-                    }
-                    spriteBatch.Draw(Game1.Textures["heartHalf"],
-                        new Vector2(camera.center.X + 200, camera.center.Y + 150), Color.White);
-                break;
             }
 
         }
