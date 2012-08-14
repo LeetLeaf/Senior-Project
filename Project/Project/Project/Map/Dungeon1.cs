@@ -103,7 +103,7 @@ namespace com.Kyle.Keebler.Map
                             //moveElement.CanMove = false;
                             Character character = moveElement as Character;
                             //character.BoundryCollisionReverse(staticObject.CollisionRec);
-                            character.KnockBack(Utilities.FlipDirection(Utilities.DirectionTo(staticObject, character)), 2);
+                            character.KnockBack(Utilities.FlipDirection(Utilities.DirectionTo(staticObject, character)), character.getMovementRate());
                             moveElement.CollisionAction(staticObject);
                         }
                     }

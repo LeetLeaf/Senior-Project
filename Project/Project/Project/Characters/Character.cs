@@ -60,6 +60,11 @@ namespace com.Kyle.Keebler.Characters
             return FrameSize;
         }
 
+        public int getMovementRate()
+        {
+            return movementRate;
+        }
+
         public Rectangle CollisionRec
         {
             get
