@@ -96,6 +96,11 @@ namespace com.Kyle.Keebler.Characters
                 TimeToWait = 1000;
                 CanMove = false;
             }
+            if (collisionElement is Enemy)
+            {
+                KnockBack(Utilities.FlipDirection(
+                    Utilities.DirectionTo(collisionElement as Enemy,this)), 1);
+            }
         }
 
         public override void CollisionActionItem(Item item)
